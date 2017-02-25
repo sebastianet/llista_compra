@@ -19,10 +19,10 @@ console.log("mini Express al port 3000");
 
 /*
 	
-	No entenc el '192.168.1.123' que crec que es el [hostname] ni el [backlock]
+	No entenc el '192.168.1.123' que crec que es el [hostname] ni el   [backlock]
 	
 	app.listen(port, [hostname], [backlog], [callback])
-	-----------------------------------------------------------
+	-------------------------------------------------------------
 	
 	app.set( 'mPort', process.env.PORT || 3000 ) ;      
 var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {

@@ -1,1 +1,3 @@
 # llista_compra
+Uns calçots per començar
+Ara aniré al mercat ecológic a comprar pa i .......

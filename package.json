@@ -1,0 +1,22 @@
+{
+  "name": "llisco",
+  "version": "1.0.0",
+  "description": "This project wants to implement a \"shoping list\" application. The clients are computers or mobile phones using a browser. The server is a NODE application, running on a Raspberry machine at home. Data is stored in a \"sqlite\" data base. Project details are reflected in page http://usuaris.tinet.cat/sag/llisco.htm Sebastia, 20170225, 10:20",
+  "main": "1_llisco.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastianet/llista_compra.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebastianet/llista_compra/issues"
+  },
+  "homepage": "https://github.com/sebastianet/llista_compra#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}

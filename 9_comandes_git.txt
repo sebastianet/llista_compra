@@ -6,8 +6,10 @@
 
  git pull origin master                  baixar el projecte de github al ordinador local
 
- git commit -am "v2.3 - que he fet"      preparar per enviar a github
+ git commit -am "sag v2.3 - que he fet"  preparar per enviar a github
  git push -u origin master               enviar el darrer codi a github
 
  git remote -v                           mostrar el repositori remot que fem servir
+
+ git --version                           mostrar versio : git version 2.1.4
 .

@@ -24,6 +24,7 @@ var app = express() ;
 
 // les meves variables
      var myVersio        = 'v 1.1.a' ;       // version identifier
+     var szOut ;
 
 
 // configuracio :
@@ -35,13 +36,13 @@ var app = express() ;
 // definim les branques a executar segon els que rebem del browser client
 
 app.get("/enric", function (req, res){
-	res.end("<h1>Hola desde el mini Express!</h1>");
+     szOut = 'Hola. ' + myVersio ;
+     res.end( "<h1>" + szOut + "</h1>" ) ;
 });
 
 app.get("/",function (req, res){
-	
-	console.log("__dirname: " + __dirname + "/statics/index.html");
-	res.sendFile(__dirname + "/statics/index.html");
+     console.log("__dirname: " + __dirname + "/statics/index.html");
+     res.sendFile(__dirname + "/statics/index.html");
 });
 
 
@@ -49,7 +50,8 @@ app.get("/",function (req, res){
 // creacio del servidor :
 // ======================
 
-var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+// var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
 
      var host = server.address().address ;

@@ -19,7 +19,7 @@ var logger       = require( 'morgan' ) ;             // logging middleware
 var fs           = require( 'fs' ) ;                 // get JPG or PNG
 
 
-// No sé si s´han de posar
+// No se si han de posarse
 //var gpio         = require( 'rpi-gpio' ) ;           // GPIO pin access
 //var PythonShell  = require( 'python-shell' ) ;       // send commands to python
 
@@ -35,7 +35,7 @@ var fs           = require( 'fs' ) ;                 // get JPG or PNG
 // configuracio :
 // ==============
 
-     app.set( 'mPort', process.env.PORT || 3000 ) ;      // save port to use in APP var ; shall use 3000 (see docu)
+     app.set( 'mPort', process.env.PORT || 3535 ) ;      // save port to use in APP var ; shall use 3535 (see docu)
 
 
 
@@ -54,15 +54,10 @@ app.get("/sendFile",function (req, res){
 });
 
 
-/*
-app.listen(3000);
-
-console.log("mini Express al port 3000");
-*/
 
 
-app.set( 'mPort', process.env.PORT || 3000 ) ; 
-console.log("ddddddddddddddddddddddddddddddddddddddd");
+app.set( 'mPort', process.env.PORT || 3535 ) ; 
+
 var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
      var host = server.address().address ;
@@ -73,17 +68,3 @@ var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
  
 
 
-/*
-	
-	No entenc el '192.168.1.123' que crec que es el [hostname] ni el   [backlock]
-	
-	app.listen(port, [hostname], [backlog], [callback])
-	-------------------------------------------------------------
-	
-	app.set( 'mPort', process.env.PORT || 3000 ) ;      
-var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-
-    var host = server.address().address ;
-    var port = server.address().port ;
-    console.log( '>>> App listening at http://%s:%s', host, port ) ;
-*/

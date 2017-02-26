@@ -11,6 +11,7 @@
 
 // Versions ( displayed via 'myVersio')
 //     1.1.a - inici del codi amb express
+//     1.1.b - set static files directory
 
 
 "use strict";
@@ -23,7 +24,7 @@ var express      = require( 'express' ) ;
 var app = express() ;
 
 // les meves variables
-     var myVersio        = 'v 1.1.a' ;       // version identifier
+     var myVersio        = 'v 1.1.b' ;       // version identifier
      var szOut ;
 
 
@@ -32,6 +33,11 @@ var app = express() ;
 
      app.set( 'mPort', process.env.PORT || 3535 ) ;      // save port to use in APP var ; shall use 3535
 
+// tell Express to load static files (if there any) from public folder
+
+     app.use( express.static( __dirname + '/statics' ) ) ;
+//     app.use( express.static( path.join(__dirname, 'statics' ) ) ) ;  
+     app.use( '/', express.static( __dirname + '/statics' ) ) ;    
 
 // definim les branques a executar segon els que rebem del browser client
 
@@ -41,8 +47,8 @@ app.get("/enric", function (req, res){
 });
 
 app.get("/",function (req, res){
-     console.log("__dirname: " + __dirname + "/statics/index.html");
-     res.sendFile(__dirname + "/statics/index.html");
+     console.log( ">>> Serve index.html" ) ;
+     res.sendFile( "index.html" ) ;
 });
 
 

@@ -12,7 +12,7 @@
 // Versions ( displayed via 'myVersio')
 //     1.1.a - inici del codi amb express
 //     1.1.b - set static files directory
-//     1.1.c - set HOSTNAME and write initial message
+//     1.1.c - set HOSTNAME and write initial message, "/enric" has timestamp
 
 
 "use strict";
@@ -25,7 +25,7 @@ var express      = require( 'express' ) ;
 var app = express() ;
 
 // les meves variables
-     var myVersio        = 'v 1.1.b' ;       // version identifier
+     var myVersio        = 'v 1.1.c' ;       // version identifier
      var szOut ;
 
 
@@ -38,7 +38,6 @@ var app = express() ;
 // tell Express to load static files (if there any) from public folder
 
      app.use( express.static( __dirname + '/statics' ) ) ;
-//     app.use( express.static( path.join(__dirname, 'statics' ) ) ) ;  
      app.use( '/', express.static( __dirname + '/statics' ) ) ;    
 
 
@@ -79,7 +78,7 @@ Date.prototype.hhmmss = function () {
 // =======================================================================
 
 app.get("/enric", function (req, res){
-     szOut = 'Hola. ' + myVersio ;
+     szOut = 'Hola. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
 

@@ -1,7 +1,17 @@
+
 //     Aplicacio "llista de la compra"
 //     Febrer de 2017.
 //     Enrique Sarradell <enricsarra@gmail.com>
 //     Sebastia Altemir, sebastiasebas@gmail.com
+
+// per engegar el servidor   :     0_engega_app_llista_compra.sh
+// per accedir des un client :     http://192.168.1.123:3535       - des la xarxa de casa meva
+//                                 http://IP-EXTERNA:9035          - des el exterior del meu router
+//    com saber la meva IP externa ?
+
+// Versions ( displayed via 'myVersio')
+//     1.1.a - inici del codi amb express
+
 
 "use strict";
 
@@ -11,25 +21,14 @@
 var express      = require( 'express' ) ;
 var app = express() ;
 
-var session      = require( 'express-session' ) ;    // express session
-var bodyParser   = require( "body-parser" ) ;
-
-var path         = require( 'path' ) ;
-var logger       = require( 'morgan' ) ;             // logging middleware
-var fs           = require( 'fs' ) ;                 // get JPG or PNG
-
-
-// No se si han de posarse
-//var gpio         = require( 'rpi-gpio' ) ;           // GPIO pin access
-//var PythonShell  = require( 'python-shell' ) ;       // send commands to python
-
-
-// les meves constants :
-// =====================
-
-
+=======
 // les meves variables :
-// =====================
+
+     var myVersio        = 'v 1.1.a' ;       // version identifier
+
+
+var express = require("express"),
+	app = express();
 
 
 // configuracio :
@@ -37,11 +36,7 @@ var fs           = require( 'fs' ) ;                 // get JPG or PNG
 
      app.set( 'mPort', process.env.PORT || 3535 ) ;      // save port to use in APP var ; shall use 3535 (see docu)
 
-
-
-
-var express = require("express"),
-	app = express();
+// definim les branques a executar segon els que rebem del browser client
 
 app.get("/", function (req, res){
 	res.end("<h1>Hola desde el mini Express!</h1>");
@@ -58,7 +53,12 @@ app.get("/sendFile",function (req, res){
 
 app.set( 'mPort', process.env.PORT || 3535 ) ; 
 
+
+// creacio del servidor :
+// ======================
+
 var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+
 
      var host = server.address().address ;
      var port = server.address().port ;
@@ -66,5 +66,3 @@ var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
 } ) ; // server
  
-
-

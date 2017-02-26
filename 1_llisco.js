@@ -21,9 +21,7 @@
 var express      = require( 'express' ) ;
 var app = express() ;
 
-=======
-// les meves variables :
-
+// les meves variables
      var myVersio        = 'v 1.1.a' ;       // version identifier
 
 
@@ -49,9 +47,6 @@ app.get("/sendFile",function (req, res){
 });
 
 
-
-
-app.set( 'mPort', process.env.PORT || 3535 ) ; 
 
 
 // creacio del servidor :

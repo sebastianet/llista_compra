@@ -1,8 +1,8 @@
 
 //     Aplicacio "llista de la compra"
 //     Febrer de 2017.
-//     Enrique Sarradell <enricsarra@gmail.com>
-//     Sebastia Altemir, sebastiasebas@gmail.com
+//     Enrique Sarradell   enricsarra@gmail.com      971.721.514
+//     Sebastia Altemir    sebastiasebas@gmail.com   93.639.8522
 
 // per engegar el servidor   :     0_engega_app_llista_compra.sh
 // per accedir des un client :     http://192.168.1.123:3535       - des la xarxa de casa meva
@@ -15,6 +15,7 @@
 
 "use strict";
 
+
 // Moduls que ens calen :
 // ======================
 
@@ -25,14 +26,11 @@ var app = express() ;
      var myVersio        = 'v 1.1.a' ;       // version identifier
 
 
-var express = require("express"),
-	app = express();
-
-
 // configuracio :
 // ==============
 
-     app.set( 'mPort', process.env.PORT || 3535 ) ;      // save port to use in APP var ; shall use 3535 (see docu)
+     app.set( 'mPort', process.env.PORT || 3535 ) ;      // save port to use in APP var ; shall use 3535
+
 
 // definim les branques a executar segon els que rebem del browser client
 
@@ -45,7 +43,6 @@ app.get("/sendFile",function (req, res){
 	console.log("__dirname: " + __dirname + "/statics/index.html");
 	res.sendFile(__dirname + "/statics/index.html");
 });
-
 
 
 

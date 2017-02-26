@@ -36,11 +36,11 @@ var express = require("express"),
 
 // definim les branques a executar segon els que rebem del browser client
 
-app.get("/", function (req, res){
+app.get("/enric", function (req, res){
 	res.end("<h1>Hola desde el mini Express!</h1>");
 });
 
-app.get("/sendFile",function (req, res){
+app.get("/",function (req, res){
 	
 	console.log("__dirname: " + __dirname + "/statics/index.html");
 	res.sendFile(__dirname + "/statics/index.html");

@@ -91,7 +91,7 @@ app.get( "/ajuda.htm", function (req, res){
      console.log( ">>> Serve ajuda" ) ;
      
      res.end( "<h1>" + "<p>Soc la ajuda</p>" + "<p>pero no se enviar un html</p>" + "</h1>" ) ;
-//      res.sendFile( "/statics/tutu.html" ) ;
+//      res.sendFile( "statics/css/style.css" ) ;
 //      res.sendFile( "tutu.html" ) ;   
 });
 

@@ -13,6 +13,8 @@
 //     1.1.a - inici del codi amb express
 //     1.1.b - set static files directory
 //     1.1.c - set HOSTNAME and write initial message, "/enric" has timestamp
+//     1.1.d - remove explicit INDEX sending
+//     1.2.a - funciona el boto "Ajuda"
 
 
 "use strict";
@@ -25,7 +27,7 @@ var express      = require( 'express' ) ;
 var app = express() ;
 
 // les meves variables
-     var myVersio        = 'v 1.1.c' ;       // version identifier
+     var myVersio        = 'v 1.2.a' ;       // version identifier
      var szOut ;
 
 
@@ -77,22 +79,23 @@ Date.prototype.hhmmss = function () {
 // definim les branques a executar segons els que rebem del browser client
 // =======================================================================
 
-app.get("/enric", function (req, res){
-     szOut = 'Hola. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
+app.get( "/enric", function (req, res){
+     console.log( ">>> Serve timestamp" ) ;
+     szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
 
-app.get("/",function (req, res){
-     console.log( ">>> Serve index.html" ) ;
-     res.sendFile( "index.html" ) ;
-});
+// app.get( "/", function (req, res){
+//      console.log( ">>> Serve index.html" ) ;
+//      res.sendFile( "index.html" ) ;
+// });
 
 
 // creacio del servidor
 // ====================
 
-// var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-    var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+ var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+//    var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
 
      var host = server.address().address ;

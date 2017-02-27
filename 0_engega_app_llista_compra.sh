@@ -10,4 +10,4 @@ szTxt="("$mydate"-"$mytime") +++ +++ +++ LLISCO starts, logging to ("$logFN")."
 logger  -i   -p user.info  $szTxt
 
 sudo  /usr/bin/node  /home/pi/llisco/1_llisco.js    >>  $logFN   2>&1   &
-echo "LOG at ./logs/llisco.log"
+echo "LOG at ../logs/llisco.log"

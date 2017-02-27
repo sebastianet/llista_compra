@@ -14,6 +14,7 @@
 //     1.1.b - set static files directory
 //     1.1.c - set HOSTNAME and write initial message, "/enric" has timestamp
 //     1.1.d - remove explicit INDEX sending
+//     1.2.a - funciona el boto "Ajuda"
 
 
 "use strict";
@@ -26,7 +27,7 @@ var express      = require( 'express' ) ;
 var app = express() ;
 
 // les meves variables
-     var myVersio        = 'v 1.1.d' ;       // version identifier
+     var myVersio        = 'v 1.2.a' ;       // version identifier
      var szOut ;
 
 

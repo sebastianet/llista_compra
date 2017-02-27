@@ -39,7 +39,7 @@ var app = express() ;
 
 // tell Express to load static files (if there any) from public folder
 
-     app.use( express.static( __dirname + '/statics' ) ) ;
+//      app.use( express.static( __dirname + '/statics' ) ) ;
      app.use( '/', express.static( __dirname + '/statics' ) ) ;    
 
 
@@ -76,6 +76,8 @@ Date.prototype.hhmmss = function () {
         myVersio, app.get( 'appHostname' ), (new Date).yyyymmdd(), (new Date).hhmmss() ) ;
 
 
+
+
 // definim les branques a executar segons els que rebem del browser client
 // =======================================================================
 
@@ -84,6 +86,15 @@ app.get( "/enric", function (req, res){
      szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
+
+app.get( "/ajuda.htm", function (req, res){
+     console.log( ">>> Serve ajuda" ) ;
+     
+     res.end( "<h1>" + "<p>Soc la ajuda</p>" + "<p>pero no se enviar un html</p>" + "</h1>" ) ;
+//      res.sendFile( "/statics/tutu.html" ) ;
+//      res.sendFile( "tutu.html" ) ;   
+});
+
 
 // app.get( "/", function (req, res){
 //      console.log( ">>> Serve index.html" ) ;
@@ -94,8 +105,8 @@ app.get( "/enric", function (req, res){
 // creacio del servidor
 // ====================
 
- var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-//    var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+//  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+   var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
 
      var host = server.address().address ;

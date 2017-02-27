@@ -87,14 +87,6 @@ app.get( "/enric", function (req, res){
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
 
-app.get( "/ajuda.htm", function (req, res){
-     console.log( ">>> Serve ajuda" ) ;
-     
-     res.end( "<h1>" + "<p>Soc la ajuda</p>" + "<p>pero no se enviar un html</p>" + "</h1>" ) ;
-//      res.sendFile( "statics/css/style.css" ) ;
-//      res.sendFile( "tutu.html" ) ;   
-});
-
 
 // app.get( "/", function (req, res){
 //      console.log( ">>> Serve index.html" ) ;
@@ -105,8 +97,8 @@ app.get( "/ajuda.htm", function (req, res){
 // creacio del servidor
 // ====================
 
-//  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-   var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+//   var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
 
      var host = server.address().address ;

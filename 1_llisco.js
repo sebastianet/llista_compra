@@ -13,6 +13,7 @@
 //     1.1.a - inici del codi amb express
 //     1.1.b - set static files directory
 //     1.1.c - set HOSTNAME and write initial message, "/enric" has timestamp
+//     1.1.d - remove explicit INDEX sending
 
 
 "use strict";
@@ -25,7 +26,7 @@ var express      = require( 'express' ) ;
 var app = express() ;
 
 // les meves variables
-     var myVersio        = 'v 1.1.c' ;       // version identifier
+     var myVersio        = 'v 1.1.d' ;       // version identifier
      var szOut ;
 
 
@@ -79,15 +80,14 @@ Date.prototype.hhmmss = function () {
 
 app.get( "/enric", function (req, res){
      console.log( ">>> Serve timestamp" ) ;
-     szOut = 'Hola. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
+     szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
 
-app.get( "/", function (req, res){
-     console.log( ">>> Serve index.html" ) ;
-     res.sendFile( "index.html" ) ;
-     console.log( ">>> Served index.html" ) ;
-});
+// app.get( "/", function (req, res){
+//      console.log( ">>> Serve index.html" ) ;
+//      res.sendFile( "index.html" ) ;
+// });
 
 
 // creacio del servidor

@@ -77,22 +77,24 @@ Date.prototype.hhmmss = function () {
 // definim les branques a executar segons els que rebem del browser client
 // =======================================================================
 
-app.get("/enric", function (req, res){
+app.get( "/enric", function (req, res){
+     console.log( ">>> Serve timestamp" ) ;
      szOut = 'Hola. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
 
-app.get("/",function (req, res){
+app.get( "/", function (req, res){
      console.log( ">>> Serve index.html" ) ;
      res.sendFile( "index.html" ) ;
+     console.log( ">>> Served index.html" ) ;
 });
 
 
 // creacio del servidor
 // ====================
 
-// var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-    var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+ var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+//    var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
 
      var host = server.address().address ;

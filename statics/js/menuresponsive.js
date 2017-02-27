@@ -1,4 +1,6 @@
-//g
+/*Responsable de que es desplegui el menu quan estem a un movil i  fem click al #menumovil (ralletes menu desplegable)
+	
+*/
 
 $(function(){
 	var boton = $('#menumovil');

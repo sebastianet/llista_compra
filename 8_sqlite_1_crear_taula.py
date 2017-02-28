@@ -4,7 +4,8 @@ import sqlite3
 # http://sebastianraschka.com/Articles/2014_sqlite_in_python_tutorial.html
 
 # name of the sqlite database file
-sqlite_file = '/home/pi/llisco/my_bbdd/llista_de_la_compra.db'
+# sqlite_file = '/home/pi/llisco/my_bbdd/llista_de_la_compra.db'
+sqlite_file = './my_bbdd/llista_de_la_compra.db'
 
 # name of the table to be created
 table_name = 'tbl_llisco'

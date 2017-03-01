@@ -112,6 +112,9 @@ app.get( "/mostrar", function (req, res){
 		res.end( szDadesMostrar ) ;
     });	
     
+    // no posar aquí el res.end, perque sortiría amb blanc degut a que s'executaría 
+    // avanç que acabés el select.... (node es asincron!!!!)
+    
 });
 
 

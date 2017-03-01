@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Executar aquest fitxer : Teclejar:  python  8_sqlite_1_crear_taula.py
 import sqlite3
 
 # http://sebastianraschka.com/Articles/2014_sqlite_in_python_tutorial.html

@@ -29,6 +29,7 @@ var app = express() ;
 // les meves variables
      var myVersio        = 'v 1.2.a' ;       // version identifier
      var szOut ;
+     
 
 
 // configuracio
@@ -78,6 +79,7 @@ Date.prototype.hhmmss = function () {
 
 
 
+
 // definim les branques a executar segons els que rebem del browser client
 // =======================================================================
 
@@ -86,6 +88,32 @@ app.get( "/enric", function (req, res){
      szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
+app.get( "/mostrar", function (req, res){
+     var szDadesMostrar  = '<h2> Comprar productes amb accent i calçots no va molt bé :)' ;
+     // =============================================================================
+	 // read the data from SQLITE database
+	 console.log("avanç require sqlite3 /mostrar");
+
+	 var sqlite3 = require('sqlite3').verbose();
+	 console.log("sqlite3" + sqlite3);
+	 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
+	 var mydb = new sqlite3.Database(dbfilename);
+
+	 mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) {
+        rows.forEach( function (row) {
+            console.log( row.numid, row.producte );
+            console.log( '=== producte [' + row.producte + ']' );
+            szDadesMostrar += '<p>' + row.producte + '</p>' ;
+
+            console.log( '=== read data [' + szDadesMostrar + ']' );
+        }) ;
+        console.log("productes a mostrar:************** " + szDadesMostrar);
+        mydb.close();
+		res.end( szDadesMostrar ) ;
+    });	
+    
+});
+
 
 
 // app.get( "/", function (req, res){
@@ -98,7 +126,7 @@ app.get( "/enric", function (req, res){
 // ====================
 
   var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-//   var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+// 	  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
 
      var host = server.address().address ;

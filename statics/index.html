@@ -27,7 +27,7 @@
 			<nav>
 				<a href="#" id="menumovil">MENU</a>
 				<ul>
-					<li><a href="#">Mostrar</a></li>
+					<li><a href="#" id="clk_mostrar">Mostrar</a></li>
 					<li><a href="#">Afegir</a></li>
 					<li><a href="#">Esborrar</a></li>
 					<li><a href="#" id="clk_ajuda">Ajuda</a></li>
@@ -91,6 +91,18 @@ $( "#clk_ajuda" ).click( function() {
 //        }) ; // bitacora data
     }) ; // get(help.htm)
 }) ; // click on menu "help" link
+
+
+
+$( "#clk_mostrar" ).click( function() {
+	console.log("Fem click_mostrar");
+    $.get( '/mostrar', function( page ) {
+        console.log( '*** Demanem al server els productes a comprar, SPA text.' ) ;
+        $( "#SPA_data" ).html( page ) ;
+    }) ; // get(/mostrar )
+}) ; 
+
+
 
 </script>
 

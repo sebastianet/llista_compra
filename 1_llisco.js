@@ -25,6 +25,7 @@
 
 var express      = require( 'express' ) ;
 var app = express() ;
+var sqlite3 = require('sqlite3').verbose();
 
 // les meves variables
      var myVersio        = 'v 1.2.a' ;       // version identifier
@@ -94,10 +95,11 @@ app.get( "/mostrar", function (req, res){
 	 // read the data from SQLITE database
 	 console.log("avanç require sqlite3 /mostrar");
 
-	 var sqlite3 = require('sqlite3').verbose();
+	 
 	 console.log("sqlite3" + sqlite3);
 	 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 	 var mydb = new sqlite3.Database(dbfilename);
+		res.charset = 'utf-8';
 
 	 mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) {
         rows.forEach( function (row) {
@@ -109,11 +111,13 @@ app.get( "/mostrar", function (req, res){
         }) ;
         console.log("productes a mostrar:************** " + szDadesMostrar);
         mydb.close();
+        
+		// res.charset = 'utf-8'; no fa res
 		res.end( szDadesMostrar ) ;
     });	
     
     // no posar aquí el res.end, perque sortiría amb blanc degut a que s'executaría 
-    // avanç que acabés el select.... (node es asincron!!!!)
+    // avanç que acabés el select.... (node es asincron)
     
 });
 

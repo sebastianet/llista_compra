@@ -97,7 +97,7 @@ app.get( "/enric", function (req, res){
 // creacio del servidor
 // ====================
 
-  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+  var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 //   var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
 

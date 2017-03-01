@@ -20,8 +20,10 @@ var app = express();
 
 // =============================================================================
 // read the data from SQLITE database
+console.log("avanç require sqlite3);
 
 var sqlite3 = require('sqlite3').verbose();
+console.log("sqlite3" + sqlite3);
 var dbfilename = "/home/pi/llisco/my_bbdd/llista_de_la_compra.db";
 var mydb = new sqlite3.Database(dbfilename);
 
@@ -51,8 +53,8 @@ app.get('/', function(req, res) {
 // =============================================================================
 // start the server
 
-var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-
+// var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+	var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

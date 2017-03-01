@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import sqlite3
 
-conn=sqlite3.connect( '/home/pi/llisco/my_bbdd/llista_de_la_compra.db' )
+# conn=sqlite3.connect( '/home/pi/llisco/my_bbdd/llista_de_la_compra.db' )
+conn=sqlite3.connect( './my_bbdd/llista_de_la_compra.db' )
 
 curs=conn.cursor()
 

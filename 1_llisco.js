@@ -89,6 +89,7 @@ app.get( "/enric", function (req, res){
      szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
+
 app.get( "/mostrar", function (req, res){
      var szDadesMostrar  = '<h2> Comprar productes amb accent i calçots no va molt bé :)' ;
      // =============================================================================
@@ -120,6 +121,19 @@ app.get( "/mostrar", function (req, res){
     // avanç que acabés el select.... (node es asincron)
     
 });
+
+app.get( "/afegir", function (req, res){
+     console.log( ">>> Serve entrada del producte a afegir" ) ;
+     var szDadesMostrar  = 
+                  '<label >Entra el que vulguis:</label> <br><br>' +
+	              '<input type="text" name="producte" placeholder="no gastis molt"' +
+	              'maxlength="300" autofocus "/> <br><br>' +     
+	              '<a id="button-afegir" class="button-afegir white" href="#">Afegir</a>' 
+	              console.log( '=== read data [' + szDadesMostrar + ']' );   
+     res.end( szDadesMostrar ) ;
+
+});
+
 
 
 

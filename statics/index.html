@@ -28,7 +28,7 @@
 				<a href="#" id="menumovil">MENU</a>
 				<ul>
 					<li><a href="#" id="clk_mostrar">Mostrar</a></li>
-					<li><a href="#">Afegir</a></li>
+					<li><a href="#" id="clk_afegir">Afegir</a></li>
 					<li><a href="#">Esborrar</a></li>
 					<li><a href="#" id="clk_ajuda">Ajuda</a></li>
 					<li><a href="#">Lliure</a></li>
@@ -73,38 +73,41 @@
         
 
 	</div>
-
-
     <script src="./js/jquery-3.0.0.js"></script>
     <script src="./js/menuresponsive.js"></script>
 
 <script>
+	
+	
+    $( "#clk_mostrar" ).click( function() {
+		console.log("Fem click_mostrar");
+		    $.get( '/mostrar', function( page ) {
+              console.log( '*** Demanem al server els productes a comprar, SPA text.' ) ;       
+              $( "#SPA_data" ).html( page ) ;
+        }) ; // get(/mostrar )}) ; 
 
-$( "#clk_ajuda" ).click( function() {
+    }) ; // click on menu "mostrar" link
+    
+    $( "#clk_afegir" ).click( function() {
+		console.log("Fem click_afegir");
+		    $.get( '/afegir', function( page ) {
+              console.log( '*** Demanem al server puguer entrar un producte a comprar, SPA text.' ) ;       
+              $( "#SPA_data" ).html( page ) ;
+              console.log(page);
+              alert(page);
+        }) ; // get(/producte )}) ; 
 
-    $.get( '/ajuda.htm', function( page ) {
-        console.log( '*** Demanem al server AJUDA.HTM, SPA text.' ) ;
-        $( "#SPA_data" ).html( page ) ;
-        // show received HTML at specific <div>
-//        $.get( '/bitacora', function( page ) {
-//             $( "#bitacora_data" ).html( page ) ; // show received HTML at specific <div>
-//        }) ; // bitacora data
-    }) ; // get(help.htm)
-}) ; // click on menu "help" link
+    }) ; // click on menu "mostrar" link
 
-
-
-$( "#clk_mostrar" ).click( function() {
-	console.log("Fem click_mostrar");
-    $.get( '/mostrar', function( page ) {
-        console.log( '*** Demanem al server els productes a comprar, SPA text.' ) ;
-        $( "#SPA_data" ).html( page ) ;
-    }) ; // get(/mostrar )
-}) ; 
+    $( "#clk_ajuda" ).click( function() {
+	    $.get( '/ajuda.htm', function( page ) {
+		            console.log( '*** Demanem al server AJUDA.HTM, SPA text.' ) ;
+		            $( "#SPA_data" ).html( page ) ;
+        }) ; // get(help.htm)}) ; 
+    }) ; // click on menu "help" link
 
 
 
 </script>
-
 </body>
 </html>

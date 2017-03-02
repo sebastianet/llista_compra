@@ -15,6 +15,7 @@
 //     1.1.c - set HOSTNAME and write initial message, "/enric" has timestamp
 //     1.1.d - remove explicit INDEX sending
 //     1.2.a - funciona el boto "Ajuda"
+//     1.2.b - fix tabulations in "/mostrar"
 
 
 "use strict";
@@ -28,10 +29,10 @@ var app = express() ;
 var sqlite3 = require('sqlite3').verbose();
 
 // les meves variables
-     var myVersio        = 'v 1.2.a' ;       // version identifier
+     var myVersio        = 'v 1.2.b' ;                           // version identifier
+     var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
-
 
 // configuracio
 // ============
@@ -39,7 +40,7 @@ var sqlite3 = require('sqlite3').verbose();
      app.set( 'mPort', process.env.PORT || 3535 ) ;           // save port to use in APP var ; shall use 3535
      app.set( 'appHostname', require('os').hostname() ) ;
 
-// tell Express to load static files (if there any) from public folder
+// tell Express to load static files (if there any) from public or static folder
 
 //      app.use( express.static( __dirname + '/statics' ) ) ;
      app.use( '/', express.static( __dirname + '/statics' ) ) ;    
@@ -78,9 +79,6 @@ Date.prototype.hhmmss = function () {
         myVersio, app.get( 'appHostname' ), (new Date).yyyymmdd(), (new Date).hhmmss() ) ;
 
 
-
-
-
 // definim les branques a executar segons els que rebem del browser client
 // =======================================================================
 
@@ -89,37 +87,35 @@ app.get( "/enric", function (req, res){
      szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
 });
+
+
 app.get( "/mostrar", function (req, res){
-     var szDadesMostrar  = '<h2> Comprar productes amb accent i calçots no va molt bé :)' ;
-     // =============================================================================
-	 // read the data from SQLITE database
-	 console.log("avanç require sqlite3 /mostrar");
 
-	 
-	 console.log("sqlite3" + sqlite3);
-	 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
-	 var mydb = new sqlite3.Database(dbfilename);
-		res.charset = 'utf-8';
+var szDadesMostrar  = '<h2> Comprar productes amb accent i calçots no va molt bé :)' ;
 
-	 mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) {
-        rows.forEach( function (row) {
-            console.log( row.numid, row.producte );
-            console.log( '=== producte [' + row.producte + ']' );
-            szDadesMostrar += '<p>' + row.producte + '</p>' ;
+     // read the data from SQLITE database
 
-            console.log( '=== read data [' + szDadesMostrar + ']' );
-        }) ;
-        console.log("productes a mostrar:************** " + szDadesMostrar);
-        mydb.close();
-        
-		// res.charset = 'utf-8'; no fa res
-		res.end( szDadesMostrar ) ;
-    });	
+     console.log("abans del require sqlite3 /mostrar");
+     console.log("sqlite3" + sqlite3);
+     var mydb = new sqlite3.Database(dbfilename);
+     res.charset = 'utf-8';   // fa algo ?
+
+     mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) { // get data into "rows"
+          rows.forEach( function (row) {
+               console.log( row.numid, row.producte );
+               console.log( '=== producte [' + row.producte + ']' );
+               szDadesMostrar += '<p>' + row.producte + '</p>' ;
+               console.log( '=== read data [' + szDadesMostrar + ']' );
+          }) ;
+          console.log("productes a mostrar:************** " + szDadesMostrar);
+          mydb.close();
+          res.end( szDadesMostrar ) ; // send to client
+     });	
     
-    // no posar aquí el res.end, perque sortiría amb blanc degut a que s'executaría 
-    // avanç que acabés el select.... (node es asincron)
+// no posar aquí el res.end, perque sortiría amb blanc degut a que s'executaría 
+// avanç que acabés el select.... (node es asincron)
     
-});
+}); // branca "/mostrar"
 
 
 

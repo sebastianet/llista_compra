@@ -115,8 +115,32 @@ var szDadesMostrar  = ' ' ;
     
 }); // get /mostrar
 
+<<<<<<< HEAD
  
 app.post( "/afegir", function (req, res){
+=======
+app.get( "/afegir", function (req, res){
+     console.log( ">>> Serve entrada del producte a afegir" ) ;
+     var szDadesMostrar  = 
+                  '<label >Entra el que vulguis:</label> <br><br>' +
+	              '<input type="text" name="producte" placeholder="no gastis molt"' +
+	              'maxlength="300" autofocus "/> <br><br>' +                   
+	              '<a href="#" id="button_afegir" class="button_afegir button_afegir_white" >Afegir</a>' ;
+
+	              console.log( '=== read data [' + szDadesMostrar + ']' );   
+     res.end( szDadesMostrar ) ;
+
+}); // branca "/afegir"
+
+app.post( "/insertProducte", function (req, res){
+     console.log( ">>> Serve insert del producte  a afegir" ) ;
+     var szDadesMostrar  = '<p >El producte ha estat afegit a la llista de la compra</p>';                 
+     console.log( '=== read data [' + szDadesMostrar + ']' );   
+     res.end( szDadesMostrar ) ;
+
+}); // branca "/insertProducte"
+
+>>>>>>> 4d9f74ad473ee7a1ffbcb527a1cd548585aa28d0
 
      console.log( ">>> Server - entrada del producte a afegir" ) ;
      var szDadesAfegir  = 

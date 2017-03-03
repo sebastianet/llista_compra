@@ -135,7 +135,6 @@ var szDadesAfegir  = 'OK' ;
 app.post( "/insertProducte", function (req, res){
 
 var szDadesInsert  = '<p>OK</p>';                 
-
      console.log( ">>> /insert : Serve insert del producte  a afegir" ) ;
      console.log( '=== read data [' + szDadesInsert + ']' );   
      res.end( szDadesInsert ) ;

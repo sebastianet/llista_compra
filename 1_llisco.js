@@ -19,6 +19,7 @@
 //     1.2.c - redisseny pagina, funciona boto "lliure"
 //     1.2.d - AFEGIR.HTM
 //     1.2.e - posar el menu on era, responsive
+//     1.2.f - inici de AFEGIR
 
 
 "use strict";
@@ -32,7 +33,7 @@ var app = express() ;
 var sqlite3 = require('sqlite3').verbose();
 
 // les meves variables
-     var myVersio        = 'v 1.2.e' ;                           // version identifier
+     var myVersio        = 'v 1.2.f' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
@@ -85,10 +86,14 @@ Date.prototype.hhmmss = function () {
 // definim les branques a executar segons els que rebem del browser client
 // =======================================================================
 
+
 app.get( "/enric", function (req, res){
-     console.log( ">>> Serve timestamp" ) ;
-     szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
-     res.end( "<h1>" + szOut + "</h1>" ) ;
+
+var szEnric  = ' ' ;
+
+     console.log( ">>> /enric : send timestamp" ) ;
+     szEnric = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
+     res.end( "<h1>" + szEnric + "</h1>" ) ;
 }); // get /enric
 
 
@@ -98,8 +103,7 @@ var szDadesMostrar  = ' ' ;
 
      // read the data from SQLITE database
 
-     console.log( "abans del sqlite3 SELECT de /mostrar" ) ;
-     console.log( "sqlite3" + sqlite3 ) ;
+     console.log( "/mostrar : fer sqlite3 SELECT" ) ;
 
      var mydb = new sqlite3.Database( dbfilename ) ;
 
@@ -111,22 +115,30 @@ var szDadesMostrar  = ' ' ;
                szDadesMostrar += '<p>' + row.producte + '</p>' ;
           }) ;
           mydb.close();
-          console.log( "Llista de la compra : ************** " + szDadesMostrar ) ;
+          console.log( ">>> Llista de la compra : ************** " + szDadesMostrar ) ;
           res.end( szDadesMostrar ) ; // send to client
      });	
     
 }); // get /mostrar
 
  
+app.post( "/afegir", function (req, res){
+
+var szDadesAfegir  = 'OK' ;
+
+     console.log( ">>> /afegir : producte a afegir" ) ;
+     res.end( szDadesAfegir ) ;
+
+}); // branca "/afegir"
 
 
 app.post( "/insertProducte", function (req, res){
-     console.log( ">>> Serve insert del producte  a afegir" ) ;
-     console.log("__Dirname: " + __dirname);
-     var szDadesMostrar  = '<p >El producte ha estat afegit a la llista de la compra</p>';                 
-     console.log( '=== read data [' + szDadesMostrar + ']' );   
-     res.end( szDadesMostrar ) ;
 
+var szDadesInsert  = '<p>OK</p>';                 
+
+     console.log( ">>> /insert : Serve insert del producte  a afegir" ) ;
+     console.log( '=== read data [' + szDadesInsert + ']' );   
+     res.end( szDadesInsert ) ;
 }); // branca "/insertProducte"
 
 

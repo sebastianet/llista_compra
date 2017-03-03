@@ -5,3 +5,17 @@
 
 <a id="button-afegir" class="button-afegir white" href="#"> Afegir </a>
 
+<script>
+
+$( "#button_afegir" ).click( function() { 
+
+    console.log("Fem click al boto afegir");
+	    
+// demanem al server que inserti el producte i ens visualiti el status al footer
+    $.post( '/insertProducte', function( page ) {
+        console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
+        $( "#SPA_status" ).html( page ) ;
+    }) ; 
+}) ;// click al botó "button-afegir" link
+
+</script>

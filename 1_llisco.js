@@ -18,6 +18,7 @@
 //     1.2.b - fix tabulations in "/mostrar"
 //     1.2.c - redisseny pagina, funciona boto "lliure"
 //     1.2.d - AFEGIR.HTM
+//     1.2.e - posar el menu on era, responsive
 
 
 "use strict";
@@ -31,7 +32,7 @@ var app = express() ;
 var sqlite3 = require('sqlite3').verbose();
 
 // les meves variables
-     var myVersio        = 'v 1.2.c' ;                           // version identifier
+     var myVersio        = 'v 1.2.e' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      

@@ -1,157 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=0.5, maximum-scale=3">
-	
-	<link href="./css/style.css" rel="stylesheet">
-	
-	
-	<title>Llista de la compra</title>
 
-	
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=0.5, maximum-scale=3">
+    <link href="./css/style.css" rel="stylesheet">
+    <title>APP llista compra</title>
 </head>
+
 <body>
 
-	<div class="contenedor">
+<div class="contenedor">
 
-		<header>
+    <header>
 
-<!--
-			<a href="#" class="logo">
-				<img src="img/calçots.jpg" alt="Calçots">	
-			</a>
--->
-			<h1> Llista de la compra</h1>
+        <a href="#" class="logo">
+            <img src="img/calsots.png" height=100 width=50 alt="Calsots">	
+        </a>
 
-			<nav>
-				<a href="#" id="menumovil">MENU</a>
-				<ul>
-					<li><a href="#" id="clk_mostrar">Mostrar</a></li>
-					<li><a href="#" id="clk_afegir">Afegir</a></li>
-					<li><a href="#">Esborrar</a></li>
-					<li><a href="#" id="clk_ajuda">Ajuda</a></li>
-					<li><a href="#">Lliure</a></li>
+        &nbsp;
+        Shop list
+        &nbsp;
 
-				</ul>	
-			</nav>
+        <span id="my_date">
+            &nbsp;
+        </span>
 
-		</header>
+    </header>
 
-<div class="contenedor-flex">
+    <div class="contenedor-flex">
         
         <article class="contingut">
-            <h1>CONTINGUT PRINCIPAL</h1>
-<div id="SPA_data">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio fuga iste cum asperiores at dolores quasi pariatur, reprehenderit cumque harum temporibus obcaecati est eum ratione impedit a nulla vero quia.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio fuga iste cum asperiores at dolores quasi pariatur, reprehenderit cumque harum temporibus obcaecati est eum ratione impedit a nulla vero quia.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio fuga iste cum asperiores at dolores quasi pariatur, reprehenderit cumque harum temporibus obcaecati est eum ratione impedit a nulla vero quia.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio fuga iste cum asperiores at dolores quasi pariatur, reprehenderit cumque harum temporibus obcaecati est eum ratione impedit a nulla vero quia.</p>
-</div>
+
+            <h1> CONTINGUT PRINCIPAL - SPA </h1>
+
+            <div id="SPA_data">
+                <p> Aquesta es la part SPA de la pagina</p>
+            </div>
+
         </article>
 
         <aside class="lateral-1">
-            <h2>LATERAL 1</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus quae officia, iste maxime in recusandae eius voluptates, repellat vero nihil consequuntur, illum doloribus, assumenda laboriosam quod voluptatum ipsum aspernatur.</p>
-            
+            <p>Operacions
+        <nnav>
+            <a href="#" id="menumovil">MENU</a>
+            <ul>
+                <li><a href="#" id="clk_menu_mostrar">Mostrar</a></li>
+                <li><a href="#" id="clk_menu_afegir">Afegir</a></li>
+                <li><a href="#">Esborrar</a></li>
+                <li><a href="#" id="clk_menu_ajuda">Ajuda</a></li>
+                <li><a href="#" id="clk_menu_lliure">Lliure</a></li>
+            </ul>	
+        </nnav>
         </aside>
 
-
         <aside class="lateral-2">
-            <h2>LATERAL 2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus quae officia, iste maxime in recusandae eius voluptates, repellat vero nihil consequuntur, illum doloribus, assumenda laboriosam quod voluptatum ipsum aspernatur.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus quae officia, iste maxime in recusandae eius voluptates, repellat vero nihil consequuntur, illum doloribus, assumenda laboriosam quod voluptatum ipsum aspernatur.</p>
+            &nbsp;
         </aside>
         
         <footer>  <!-- footer fals. Es del contenedor-flex. -->
-        <div id="SPA_status">
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus quae officme in recusandae eius </p>
-        </div>
-     </footer>
+            <p>Resultat de la darrera operacio
+            <div id="my_status">
+                &nbsp;
+            </div>
+        </footer>
 
-
-        
-  	</div>      
-        
-
-	</div>
+    </div>
+</div>
 
 
     <script src="./js/jquery-3.0.0.js"></script>
     <script src="./js/menuresponsive.js"></script>
 
 <script>
-	
-    $( "#clk_mostrar" ).click( function() {
-		console.log("Fem click_mostrar");
-		    $.get( '/mostrar', function( page ) {
-              console.log( '*** Demanem al server els productes a comprar, SPA text.' ) ;       
-              $( "#SPA_data" ).html( page ) ;
-        }) ; // get(/mostrar )}) ; 
 
+    function Posar_Linia_Status ( Nou_Texte ) {
+        var szStatus = '[' + (new Date).yyyymmdd() +', '+ (new Date).hhmmss() + '] ' + Nou_Texte + ' ###' ;
+        $( "#my_status" ).html( szStatus ) ;
+    } ;
+
+    $( "#clk_menu_mostrar" ).click( function() {
+        console.log("Fem click_mostrar");
+        $.get( '/mostrar', function( page ) {
+            console.log( '*** Demanem al server els productes a comprar i els mostrem a SPA text.' ) ;       
+            $( "#SPA_data" ).html( page ) ;
+            Posar_Linia_Status( "Mostrar OK" ) ;
+        }) ; // get /mostrar
     }) ; // click on menu "mostrar" link
     
-    $( "#clk_afegir" ).click( function() {
-		console.log("Fem click_afegir");
-		    $.get( '/afegir', function( page ) {
-              console.log( '*** Demanem al server puguer entrar un producte a comprar, SPA text.' ) ;  
-
-             // insertem page a contingut     
-              $( "#SPA_data" ).html( page ) ;  // insertem page a contingut
-              
-              // definimim aqui el event perque si ho faig como al clk_mostrar no funciona
-              // suposo que es perque quan carrega la pagina inicial, no te definit al html
-              // el boto button_afegir.
-              $( "#button_afegir" ).click( function() { 
-
-	    console.log("Fem click al boto afegir");
-	    
-              // demanem al server que inserti el producte i ens visualiti el status al footer
-	          $.post( '/insertProducte', function( page ) {
-			        console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
-		            $( "#SPA_status" ).html( page ) ;
-                    console.log(page);           
-              }) ; 
-              
-              
-	}) ;// click al botó "button-afegir" link
-
-                      
-              
-              console.log(page);
-              
-        }) ; // get(/clk_afegir )}) ; 
-
+    $( "#clk_menu_afegir" ).click( function() {
+        console.log("Fem click_afegir");
+        $.get( 'afegir.htm', function( page ) {
+            console.log( '*** Demanem al server el fitxer AFEGIR.HTm.' ) ;       
+            $( "#SPA_data" ).html( page ) ;
+        }) ; // get afegir.htm
     }) ; // click on menu "afegir" link
 
-    $( "#clk_ajuda" ).click( function() {
-	    $.get( '/ajuda.htm', function( page ) {
-		            console.log( '*** Demanem al server AJUDA.HTM, SPA text.' ) ;
-		            $( "#SPA_data" ).html( page ) ;
-        }) ; // get(help.htm)}) ; 
-    }) ; // click on menu "help" link
-   
-   
-    
-/*
-    // aqui el client ha de recuperar de la pagina les dades que hem entrat 
-// i posar-les en el post
-//     $( "#button_afegir" ).click( function() 
+    $( "#clk_menu_ajuda" ).click( function() {
+        console.log("Fem click_ajuda");
+        $.get( 'ajuda.htm', function( page ) {
+            console.log( '*** Demanem al server el fitxer AJUDA.HTM i el mostrem a SPA text.' ) ;
+            $( "#SPA_data" ).html( page ) ;
+            Posar_Linia_Status( "Ajuda OK" ) ;
+        }) ; // get ajuda.htm
+    }) ; // click on menu "ajuda" link
 
-	    console.log("Fem click al boto afegir");
-	    alert("fem click al boto button_afegir");
-	$.post( '/insertProducte', function( page ) {
-			console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
-		$( "#SPA_status" ).html( page ) ;
-              console.log(page);
-             
-        }) ; 
-	}) ;// click al botó "button-afegir" link
-*/
+    $( "#clk_menu_lliure" ).click( function() {
+        console.log("Fem click_lliure");
+        $.get( '/enric', function( page ) {
+            console.log( '*** Demanem al server /enric.' ) ;
+            $( "#SPA_data" ).html( page ) ;
+            Posar_Linia_Status( "Lliure OK" ) ;
+        }) ; // get /enric
+    }) ; // click on menu "lliure" link
 
+</script>
 
-    
-     
+<hr>
+
+<script>
+
+// nova funcio yymmdd de Date() - at client
+Date.prototype.yyyymmdd = function () {
+        var yyyy = this.getFullYear().toString();
+        var mm   = (this.getMonth()+1).toString(); // getMonth() is zero-based
+        var dd   = this.getDate().toString();
+        return yyyy + '/' + (mm[1]?mm:"0"+mm[0]) + '/' + (dd[1]?dd:"0"+dd[0]);
+} ; // yyyymmd
+
+Date.prototype.hhmmss = function () {
+        function fixTime(i) {
+        return (i < 10) ? "0" + i : i;
+    }
+        var today = new Date(),
+            hh = fixTime( today.getHours() ),
+                mm = fixTime( today.getMinutes() ),
+                ss = fixTime( today.getSeconds() ) ;
+        var myHHMMSS = hh + ':' + mm + ':' + ss ;
+        return myHHMMSS ;
+} ; // hhmmss
+
+$( function() { // DOM ready event for main INDEX.HTML page
+
+    console.log( '*** index.html - DOM ready event.' ) ;
+
+// posar la data actual - aixi diferenciem re-loads
+    var szAra = 'Now is [' + (new Date).yyyymmdd() +', '+ (new Date).hhmmss() + ']' ;
+    $( "#my_date" ).html( szAra ) ; // show actual date
+
+} ) ; // DOM ready
 
 </script>
 

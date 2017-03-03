@@ -20,7 +20,7 @@ var app = express();
 
 // =============================================================================
 // read the data from SQLITE database
-console.log("avanç require sqlite3);
+console.log("abans require sqlite3");
 
 var sqlite3 = require('sqlite3').verbose();
 console.log("sqlite3" + sqlite3);
@@ -30,6 +30,7 @@ var mydb = new sqlite3.Database(dbfilename);
 mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) {
         rows.forEach( function (row) {
             console.log( row.numid, row.producte );
+            console.log( '=== numid    [' + row.numid + ']' );
             console.log( '=== producte [' + row.producte + ']' );
             szDades += row.producte + '<br>' ;
             console.log( '=== read data [' + szDades + ']' );

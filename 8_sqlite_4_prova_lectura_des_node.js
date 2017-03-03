@@ -13,17 +13,20 @@
 
 var szDades  = '<p>' ;
 
-var express = require('express');
-var app = express();
+var express      = require('express');
+var app          = express();
+
+var bodyParser   = require( "body-parser" ) ;
 
      app.set( 'mPort', process.env.PORT || 4545 ) ; 
+     app.use( bodyParser.urlencoded( { extended:true } ) ) ;
 
 // =============================================================================
 // read the data from SQLITE database
 console.log("abans require sqlite3");
 
 var sqlite3 = require('sqlite3').verbose();
-console.log("sqlite3" + sqlite3);
+// console.log("sqlite3" + sqlite3);
 var dbfilename = "/home/pi/llisco/my_bbdd/llista_de_la_compra.db";
 var mydb = new sqlite3.Database(dbfilename);
 
@@ -51,11 +54,26 @@ app.get('/', function(req, res) {
 });
 
 
+// Posar a la BBDD
+// URL al client : http://192.168.1.123:4545/posar/nou_producte="AAA BBB"
+// Aqui rebem === ADD data +++ add ("AAA BBB").
+
+app.get( '/posar/nou_producte=:res_nou_prod', function (req, res) { 
+
+var Producte_Nou = req.params.res_nou_prod ;
+
+var szAdd = '+++ add (' + Producte_Nou + '). ' ;
+    console.log( '=== ADD data ' + szAdd ) ;
+
+    res.status( 200 ).send( "posar OK" ) ;  ;
+
+});
+
 // =============================================================================
 // start the server
 
-// var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-	var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+// var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

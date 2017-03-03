@@ -31,6 +31,7 @@
 var express      = require( 'express' ) ;
 var app = express() ;
 
+var path         = require( 'path' ) ;
 var bodyParser   = require( "body-parser" ) ;                    // npm install body-parser
 
 var sqlite3 = require('sqlite3').verbose();
@@ -49,8 +50,9 @@ var sqlite3 = require('sqlite3').verbose();
 
 // tell Express to load static files (if there any) from public or static folder
 
-//      app.use( express.static( __dirname + '/statics' ) ) ;
-     app.use( '/', express.static( __dirname + '/statics' ) ) ;    
+     app.use( express.static(path.join(__dirname + '/statics' ) ) ) ;
+//     app.use( express.static( __dirname + '/statics' ) ) ;
+//     app.use( '/', express.static( __dirname + '/statics' ) ) ;    
 
 // body parse
      app.use( bodyParser.urlencoded( { extended:true } ) ) ;

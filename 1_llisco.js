@@ -117,36 +117,6 @@ var szDadesMostrar  = ' ' ;
 }); // get /mostrar
 
  
-app.post( "/afegir", function (req, res){
-     console.log( ">>> Serve entrada del producte a afegir" ) ;
-/*
-     var szDadesMostrar  = 
-                  '<label >Entra el que vulguis:</label> <br><br>' +
-	              '<input type="text" name="producte" placeholder="no gastis molt"' +
-	              'maxlength="300" autofocus "/> <br><br>' +                   
-	              '<a href="#" id="button_afegir" class="button_afegir button_afegir_white" >Afegir</a>' ;
-*/
-	              var szDadesMostrar  = 
-                  '<label >Entra el que vulguis:</label> <br><br>' +
-	              '<input type="text" name="producte" placeholder="no gastis molt"' +
-	              'maxlength="300" autofocus "/> <br><br>' +                   
-	              '<a href="#" id="button_afegir" class="button_afegir button_afegir_white" >Afegir</a>' + '<script> $( "#button_afegir" ).click( function() { 
-
-	    console.log("Fem click al boto afegir");
-	    
-              // demanem al server que inserti el producte i ens visualiti el status al footer
-	          $.post( '/insertProducte', function( page ) {
-			        console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
-		            $( "#SPA_status" ).html( page ) ;
-                    console.log(page);           
-              }) ; 
-</script>' ;
-
-
-	              console.log( '=== read data [' + szDadesMostrar + ']' );   
-     res.end( szDadesMostrar ) ;
-
-}); // branca "/afegir"
 
 
 app.post( "/insertProducte", function (req, res){
@@ -167,8 +137,8 @@ app.post( "/insertProducte", function (req, res){
 // creacio del servidor
 // ====================
 
-//  var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+ var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+//   var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

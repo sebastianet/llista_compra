@@ -120,6 +120,7 @@
         }
 		
 
+
 		/*Medias Quieres en los  910px*/
 		@media screen and (max-width: 56.875em){
 
@@ -245,6 +246,41 @@
            
         }  /* Fin de Medias Quieres*/   
 
+		/* CSS Afegir: pantalla per entrar el producte a comprar*/
+
+.button_afegir { /* clase general */
+  border: 1px solid #dedede;
+  border-radius: 3px;
+  color: #555;
+  display: inline-block;
+  font: bold 12px/12px HelveticaNeue, Arial;
+  padding: 8px 11px; 
+  text-decoration: none;
+}
+
+.button_afegir_white{
+  background: #f5f5f5;
+  border-color: #dedede #d8d8d8 #d3d3d3;
+  box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+  color: #555;
+  text-shadow: 0 1px 0 #fff;
+  background: linear-gradient(white, orange); 
+}
+
+.button_afegir_white:hover{
+    background: #f4f4f4;
+    border-color: #c7c7c7 #c3c3c3 #bebebe;
+    box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+    text-shadow: 0 1px 0 #fdfdfd;
+    background: red;
+    background: linear-gradient(red, orange); 
+}
+
+
+input[name="producte"] {
+  width: 75%;
+}
+
 
 /* CSS per la sub-part SPA */
 #SPA_data {
@@ -263,41 +299,6 @@
     background: red ;
 }
 
-
-/* CSS Afegir: pantalla per entrar el producte a comprar*/
-
-.button-afegir { /* clase general */
-  border: 1px solid #dedede;
-  border-radius: 3px;
-  color: #555;
-  display: inline-block;
-  font: bold 12px/12px HelveticaNeue, Arial;
-  padding: 8px 11px; 
-  text-decoration: none;
-}
-
-.button-afegir.white{
-  background: #f5f5f5;
-  border-color: #dedede #d8d8d8 #d3d3d3;
-  box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
-  color: #555;
-  text-shadow: 0 1px 0 #fff;
-  background: linear-gradient(white, orange); 
-}
-
-.button-afegir.white:hover{
-    background: #f4f4f4;
-    border-color: #c7c7c7 #c3c3c3 #bebebe;
-    box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
-    text-shadow: 0 1px 0 #fdfdfd;
-    background: red;
-    background: linear-gradient(red, orange); 
-}
-
-
-input[name="producte"] {
-  width: 75%;
-}
 
 
 </style>

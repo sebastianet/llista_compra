@@ -122,12 +122,22 @@ app.get( "/afegir", function (req, res){
      var szDadesMostrar  = 
                   '<label >Entra el que vulguis:</label> <br><br>' +
 	              '<input type="text" name="producte" placeholder="no gastis molt"' +
-	              'maxlength="300" autofocus "/> <br><br>' +     
-	              '<a id="button-afegir" class="button-afegir white" href="#">Afegir</a>' 
+	              'maxlength="300" autofocus "/> <br><br>' +                   
+	              '<a href="#" id="button_afegir" class="button_afegir button_afegir_white" >Afegir</a>' ;
+
 	              console.log( '=== read data [' + szDadesMostrar + ']' );   
      res.end( szDadesMostrar ) ;
 
-});
+}); // branca "/afegir"
+
+app.post( "/insertProducte", function (req, res){
+     console.log( ">>> Serve insert del producte  a afegir" ) ;
+     var szDadesMostrar  = '<p >El producte ha estat afegit a la llista de la compra</p>';                 
+     console.log( '=== read data [' + szDadesMostrar + ']' );   
+     res.end( szDadesMostrar ) ;
+
+}); // branca "/insertProducte"
+
 
 
 

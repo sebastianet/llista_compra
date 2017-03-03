@@ -64,7 +64,9 @@
         </aside>
         
         <footer>  <!-- footer fals. Es del contenedor-flex. -->
+        <div id="SPA_status">
            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus quae officme in recusandae eius </p>
+        </div>
      </footer>
 
 
@@ -92,13 +94,35 @@
     $( "#clk_afegir" ).click( function() {
 		console.log("Fem click_afegir");
 		    $.get( '/afegir', function( page ) {
-              console.log( '*** Demanem al server puguer entrar un producte a comprar, SPA text.' ) ;       
-              $( "#SPA_data" ).html( page ) ;
-              console.log(page);
-              alert(page);
-        }) ; // get(/producte )}) ; 
+              console.log( '*** Demanem al server puguer entrar un producte a comprar, SPA text.' ) ;  
 
-    }) ; // click on menu "mostrar" link
+             // insertem page a contingut     
+              $( "#SPA_data" ).html( page ) ;  // insertem page a contingut
+              
+              // definimim aqui el event perque si ho faig como al clk_mostrar no funciona
+              // suposo que es perque quan carrega la pagina inicial, no te definit al html
+              // el boto button_afegir.
+              $( "#button_afegir" ).click( function() { 
+
+	    console.log("Fem click al boto afegir");
+	    
+              // demanem al server que inserti el producte i ens visualiti el status al footer
+	          $.post( '/insertProducte', function( page ) {
+			        console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
+		            $( "#SPA_status" ).html( page ) ;
+                    console.log(page);           
+              }) ; 
+              
+              
+	}) ;// click al botó "button-afegir" link
+
+                      
+              
+              console.log(page);
+              
+        }) ; // get(/clk_afegir )}) ; 
+
+    }) ; // click on menu "afegir" link
 
     $( "#clk_ajuda" ).click( function() {
 	    $.get( '/ajuda.htm', function( page ) {
@@ -106,6 +130,28 @@
 		            $( "#SPA_data" ).html( page ) ;
         }) ; // get(help.htm)}) ; 
     }) ; // click on menu "help" link
+   
+   
+    
+/*
+    // aqui el client ha de recuperar de la pagina les dades que hem entrat 
+// i posar-les en el post
+//     $( "#button_afegir" ).click( function() 
+
+	    console.log("Fem click al boto afegir");
+	    alert("fem click al boto button_afegir");
+	$.post( '/insertProducte', function( page ) {
+			console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
+		$( "#SPA_status" ).html( page ) ;
+              console.log(page);
+             
+        }) ; 
+	}) ;// click al botó "button-afegir" link
+*/
+
+
+    
+     
 
 </script>
 

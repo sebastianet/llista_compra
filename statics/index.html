@@ -45,11 +45,11 @@
         <nnav>
             <a href="#" id="menumovil">MENU</a>
             <ul>
-                <li><a href="#" id="clk_mostrar">Mostrar</a></li>
-                <li><a href="#" id="clk_afegir">Afegir</a></li>
+                <li><a href="#" id="clk_menu_mostrar">Mostrar</a></li>
+                <li><a href="#" id="clk_menu_afegir">Afegir</a></li>
                 <li><a href="#">Esborrar</a></li>
-                <li><a href="#" id="clk_ajuda">Ajuda</a></li>
-                <li><a href="#" id="clk_lliure">Lliure</a></li>
+                <li><a href="#" id="clk_menu_ajuda">Ajuda</a></li>
+                <li><a href="#" id="clk_menu_lliure">Lliure</a></li>
             </ul>	
         </nnav>
         </aside>
@@ -59,25 +59,13 @@
         </aside>
         
         <footer>  <!-- footer fals. Es del contenedor-flex. -->
-<<<<<<< HEAD
             <p>Resultat de la darrera operacio
             <div id="my_status">
                 &nbsp;
             </div>
         </footer>
-=======
-        <div id="SPA_status">
-           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus quae officme in recusandae eius </p>
-        </div>
-     </footer>
 
-
-        
-  	</div>      
->>>>>>> 4d9f74ad473ee7a1ffbcb527a1cd548585aa28d0
-        
-      </div>      
-
+    </div>
 </div>
 
 
@@ -91,7 +79,7 @@
         $( "#my_status" ).html( szStatus ) ;
     } ;
 
-    $( "#clk_mostrar" ).click( function() {
+    $( "#clk_menu_mostrar" ).click( function() {
         console.log("Fem click_mostrar");
         $.get( '/mostrar', function( page ) {
             console.log( '*** Demanem al server els productes a comprar i els mostrem a SPA text.' ) ;       
@@ -100,16 +88,16 @@
         }) ; // get /mostrar
     }) ; // click on menu "mostrar" link
     
-    $( "#clk_afegir" ).click( function() {
-<<<<<<< HEAD
+    $( "#clk_menu_afegir" ).click( function() {
         console.log("Fem click_afegir");
-        $.post( '/afegir', function( page ) {
-            console.log( '*** Demanem al server entrar un producte a comprar mostrem el resultat a SPA text.' ) ;       
+        $.get( 'afegir.htm', function( page ) {
+            console.log( '*** Demanem al server el fitxer AFEGIR.HTm.' ) ;       
             $( "#SPA_data" ).html( page ) ;
-        }) ; // post /afegir
+        }) ; // get afegir.htm
     }) ; // click on menu "afegir" link
 
-    $( "#clk_ajuda" ).click( function() {
+    $( "#clk_menu_ajuda" ).click( function() {
+        console.log("Fem click_ajuda");
         $.get( 'ajuda.htm', function( page ) {
             console.log( '*** Demanem al server el fitxer AJUDA.HTM i el mostrem a SPA text.' ) ;
             $( "#SPA_data" ).html( page ) ;
@@ -117,7 +105,8 @@
         }) ; // get ajuda.htm
     }) ; // click on menu "ajuda" link
 
-    $( "#clk_lliure" ).click( function() {
+    $( "#clk_menu_lliure" ).click( function() {
+        console.log("Fem click_lliure");
         $.get( '/enric', function( page ) {
             console.log( '*** Demanem al server /enric.' ) ;
             $( "#SPA_data" ).html( page ) ;
@@ -160,68 +149,6 @@ $( function() { // DOM ready event for main INDEX.HTML page
     $( "#my_date" ).html( szAra ) ; // show actual date
 
 } ) ; // DOM ready
-=======
-		console.log("Fem click_afegir");
-		    $.get( '/afegir', function( page ) {
-              console.log( '*** Demanem al server puguer entrar un producte a comprar, SPA text.' ) ;  
-
-             // insertem page a contingut     
-              $( "#SPA_data" ).html( page ) ;  // insertem page a contingut
-              
-              // definimim aqui el event perque si ho faig como al clk_mostrar no funciona
-              // suposo que es perque quan carrega la pagina inicial, no te definit al html
-              // el boto button_afegir.
-              $( "#button_afegir" ).click( function() { 
-
-	    console.log("Fem click al boto afegir");
-	    
-              // demanem al server que inserti el producte i ens visualiti el status al footer
-	          $.post( '/insertProducte', function( page ) {
-			        console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
-		            $( "#SPA_status" ).html( page ) ;
-                    console.log(page);           
-              }) ; 
-              
-              
-	}) ;// click al botó "button-afegir" link
-
-                      
-              
-              console.log(page);
-              
-        }) ; // get(/clk_afegir )}) ; 
-
-    }) ; // click on menu "afegir" link
-
-    $( "#clk_ajuda" ).click( function() {
-	    $.get( '/ajuda.htm', function( page ) {
-		            console.log( '*** Demanem al server AJUDA.HTM, SPA text.' ) ;
-		            $( "#SPA_data" ).html( page ) ;
-        }) ; // get(help.htm)}) ; 
-    }) ; // click on menu "help" link
-   
-   
-    
-/*
-    // aqui el client ha de recuperar de la pagina les dades que hem entrat 
-// i posar-les en el post
-//     $( "#button_afegir" ).click( function() 
-
-	    console.log("Fem click al boto afegir");
-	    alert("fem click al boto button_afegir");
-	$.post( '/insertProducte', function( page ) {
-			console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
-		$( "#SPA_status" ).html( page ) ;
-              console.log(page);
-             
-        }) ; 
-	}) ;// click al botó "button-afegir" link
-*/
-
-
-    
-     
->>>>>>> 4d9f74ad473ee7a1ffbcb527a1cd548585aa28d0
 
 </script>
 

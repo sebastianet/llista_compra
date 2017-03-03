@@ -17,6 +17,7 @@
 //     1.2.a - funciona el boto "Ajuda"
 //     1.2.b - fix tabulations in "/mostrar"
 //     1.2.c - redisseny pagina, funciona boto "lliure"
+//     1.2.d - AFEGIR.HTM
 
 
 "use strict";
@@ -115,11 +116,8 @@ var szDadesMostrar  = ' ' ;
     
 }); // get /mostrar
 
-<<<<<<< HEAD
  
 app.post( "/afegir", function (req, res){
-=======
-app.get( "/afegir", function (req, res){
      console.log( ">>> Serve entrada del producte a afegir" ) ;
      var szDadesMostrar  = 
                   '<label >Entra el que vulguis:</label> <br><br>' +
@@ -132,6 +130,7 @@ app.get( "/afegir", function (req, res){
 
 }); // branca "/afegir"
 
+
 app.post( "/insertProducte", function (req, res){
      console.log( ">>> Serve insert del producte  a afegir" ) ;
      var szDadesMostrar  = '<p >El producte ha estat afegit a la llista de la compra</p>';                 
@@ -139,19 +138,6 @@ app.post( "/insertProducte", function (req, res){
      res.end( szDadesMostrar ) ;
 
 }); // branca "/insertProducte"
-
->>>>>>> 4d9f74ad473ee7a1ffbcb527a1cd548585aa28d0
-
-     console.log( ">>> Server - entrada del producte a afegir" ) ;
-     var szDadesAfegir  = 
-        '<label >Entra el que vulguis:</label> <br><br>' +
-        '<input type="text" name="producte" placeholder="no gastis molt"' +
-        'maxlength="300" autofocus "/> <br><br>' +     
-        '<a id="button-afegir" class="button-afegir white" href="#">Afegir</a>' 
-     console.log( '=== read data [' + szDadesAfegir + ']' );   
-     res.end( szDadesAfegir ) ;
-
-}); // post /afegir
 
 
 // app.get( "/", function (req, res){

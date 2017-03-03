@@ -122,6 +122,7 @@ var szDadesMostrar  = ' ' ;
 
 app.post( "/insertProducte", function (req, res){
      console.log( ">>> Serve insert del producte  a afegir" ) ;
+     console.log("__Dirname: " + __dirname);
      var szDadesMostrar  = '<p >El producte ha estat afegit a la llista de la compra</p>';                 
      console.log( '=== read data [' + szDadesMostrar + ']' );   
      res.end( szDadesMostrar ) ;

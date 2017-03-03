@@ -8,9 +8,9 @@ maxlength="300" autofocus "> <br><br>
 $( "#button_afegir" ).click( function() { 
 
 	    console.log("Fem click al boto afegir");
-	    
+               	    	
               // demanem al server que inserti el producte i ens visualiti el status al footer
-	          $.post( '/insertProducte', function( page ) {
+	          $.post( '/insertProducte', Producte($('input:text[name=producte]').val()), function( page ) {
 			        console.log( '*** Demanem al server que inserti el producte, SPA text.' ) ; 
 		            $( "#SPA_status" ).html( page ) ;
                     console.log(page);           

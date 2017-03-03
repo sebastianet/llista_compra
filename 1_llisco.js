@@ -19,7 +19,7 @@
 //     1.2.c - redisseny pagina, funciona boto "lliure"
 //     1.2.d - AFEGIR.HTM
 //     1.2.e - posar el menu on era, responsive
-//     1.2.f - inici de AFEGIR
+//     1.2.f - cal instalar BODYPARSER
 
 
 "use strict";
@@ -30,6 +30,9 @@
 
 var express      = require( 'express' ) ;
 var app = express() ;
+
+var bodyParser   = require( "body-parser" ) ;                    // npm install body-parser
+
 var sqlite3 = require('sqlite3').verbose();
 
 // les meves variables
@@ -48,6 +51,12 @@ var sqlite3 = require('sqlite3').verbose();
 
 //      app.use( express.static( __dirname + '/statics' ) ) ;
      app.use( '/', express.static( __dirname + '/statics' ) ) ;    
+
+// body parse
+     app.use( bodyParser.urlencoded( { extended:true } ) ) ;
+
+// log
+// by now     app.use( logger( 'dev' ) ) ;                         // tiny (minimal), dev (developer), common (apache)
 
 
 // definim algunes funcions
@@ -134,10 +143,16 @@ var szDadesAfegir  = 'OK' ;
 
 app.post( "/insertProducte", function (req, res){
 
-var szDadesInsert  = '<p>OK</p>';                 
-     console.log( ">>> /insert : Serve insert del producte  a afegir" ) ;
-     console.log( '=== read data [' + szDadesInsert + ']' );   
-     res.end( szDadesInsert ) ;
+var szDadesInsertData    = '.' ;                 
+var szDadesInsertResult  = '<p>OK</p>' ;                 
+
+     console.log( '>>> Body posted ' + JSON.stringify( req.body ) ) ; // dump request body
+
+var New_Prod_Descript = req.body.new_prod_descr ;
+
+     console.log( ">>> /insert prod {" + New_Prod_Descript + "}." ) ;
+     res.end( szDadesInsertResult ) ;
+
 }); // branca "/insertProducte"
 
 
@@ -150,8 +165,8 @@ var szDadesInsert  = '<p>OK</p>';
 // creacio del servidor
 // ====================
 
- var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-//   var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+//  var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+   var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

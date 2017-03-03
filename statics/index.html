@@ -60,7 +60,7 @@
         </aside>
         
         <footer>  <!-- footer fals. Es del contenedor-flex. -->
-            <p id="SPA_status">Resultat de la darrera operacio</p>
+            <p>Resultat de la darrera operacio</p>
             <div id="my_status">
                 &nbsp;
             </div>
@@ -81,7 +81,7 @@
     } ;
 
     $( "#clk_menu_mostrar" ).click( function() {
-        console.log("Fem click_mostrar");
+        console.log( "### Menu click_mostrar" ) ;
         $.get( '/mostrar', function( page ) {
             console.log( '*** Demanem al server els productes a comprar i els mostrem a SPA text.' ) ;       
             $( "#SPA_data" ).html( page ) ;
@@ -90,15 +90,15 @@
     }) ; // click on menu "mostrar" link
     
     $( "#clk_menu_afegir" ).click( function() {
-        console.log("Fem click_afegir");
+        console.log( "### Menu click_afegir" ) ;
         $.get( 'afegir.htm', function( page ) {
-            console.log( '*** Demanem al server el fitxer AFEGIR.HTm.' ) ;       
+            console.log( '*** Demanem al server el fitxer AFEGIR.HTM' ) ;       
             $( "#SPA_data" ).html( page ) ;
         }) ; // get afegir.htm
     }) ; // click on menu "afegir" link
 
     $( "#clk_menu_ajuda" ).click( function() {
-        console.log("Fem click_ajuda");
+        console.log( "### Menu click_ajuda" ) ;
         $.get( 'ajuda.htm', function( page ) {
             console.log( '*** Demanem al server el fitxer AJUDA.HTM i el mostrem a SPA text.' ) ;
             $( "#SPA_data" ).html( page ) ;
@@ -107,7 +107,7 @@
     }) ; // click on menu "ajuda" link
 
     $( "#clk_menu_lliure" ).click( function() {
-        console.log("Fem click_lliure");
+        console.log( "### Menu click_lliure" ) ;
         $.get( '/enric', function( page ) {
             console.log( '*** Demanem al server /enric.' ) ;
             $( "#SPA_data" ).html( page ) ;

@@ -16,6 +16,7 @@
 //     1.1.d - remove explicit INDEX sending
 //     1.2.a - funciona el boto "Ajuda"
 //     1.2.b - fix tabulations in "/mostrar"
+//     1.2.c - redisseny pagina, funciona boto "lliure"
 
 
 "use strict";
@@ -29,7 +30,7 @@ var app = express() ;
 var sqlite3 = require('sqlite3').verbose();
 
 // les meves variables
-     var myVersio        = 'v 1.2.b' ;                           // version identifier
+     var myVersio        = 'v 1.2.c' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
@@ -86,50 +87,47 @@ app.get( "/enric", function (req, res){
      console.log( ">>> Serve timestamp" ) ;
      szOut = 'Hola Enric. ' + myVersio + ' {' + (new Date).hhmmss() + '}' ;
      res.end( "<h1>" + szOut + "</h1>" ) ;
-});
+}); // get /enric
 
 
 app.get( "/mostrar", function (req, res){
 
-var szDadesMostrar  = '<h2> Comprar productes amb accent i calçots no va molt bé :)' ;
+var szDadesMostrar  = ' ' ;
 
      // read the data from SQLITE database
 
-     console.log("abans del require sqlite3 /mostrar");
-     console.log("sqlite3" + sqlite3);
-     var mydb = new sqlite3.Database(dbfilename);
-     res.charset = 'utf-8';   // fa algo no ?
+     console.log( "abans del sqlite3 SELECT de /mostrar" ) ;
+     console.log( "sqlite3" + sqlite3 ) ;
+
+     var mydb = new sqlite3.Database( dbfilename ) ;
 
      mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) { // get data into "rows"
+
           rows.forEach( function (row) {
                console.log( row.numid, row.producte );
                console.log( '=== producte [' + row.producte + ']' );
                szDadesMostrar += '<p>' + row.producte + '</p>' ;
-               console.log( '=== read data [' + szDadesMostrar + ']' );
           }) ;
-          console.log("productes a mostrar:************** " + szDadesMostrar);
           mydb.close();
+          console.log( "Llista de la compra : ************** " + szDadesMostrar ) ;
           res.end( szDadesMostrar ) ; // send to client
      });	
     
-// no posar aquí el res.end, perque sortiría amb blanc degut a que s'executaría 
-// avanç que acabés el select.... (node es asincron)
-    
-}); // branca "/mostrar"
+}); // get /mostrar
 
-app.get( "/afegir", function (req, res){
-     console.log( ">>> Serve entrada del producte a afegir" ) ;
-     var szDadesMostrar  = 
-                  '<label >Entra el que vulguis:</label> <br><br>' +
-	              '<input type="text" name="producte" placeholder="no gastis molt"' +
-	              'maxlength="300" autofocus "/> <br><br>' +     
-	              '<a id="button-afegir" class="button-afegir white" href="#">Afegir</a>' 
-	              console.log( '=== read data [' + szDadesMostrar + ']' );   
-     res.end( szDadesMostrar ) ;
+ 
+app.post( "/afegir", function (req, res){
 
-});
+     console.log( ">>> Server - entrada del producte a afegir" ) ;
+     var szDadesAfegir  = 
+        '<label >Entra el que vulguis:</label> <br><br>' +
+        '<input type="text" name="producte" placeholder="no gastis molt"' +
+        'maxlength="300" autofocus "/> <br><br>' +     
+        '<a id="button-afegir" class="button-afegir white" href="#">Afegir</a>' 
+     console.log( '=== read data [' + szDadesAfegir + ']' );   
+     res.end( szDadesAfegir ) ;
 
-
+}); // post /afegir
 
 
 // app.get( "/", function (req, res){
@@ -141,9 +139,8 @@ app.get( "/afegir", function (req, res){
 // creacio del servidor
 // ====================
 
-  var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-// 	  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
-
+//  var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+  var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

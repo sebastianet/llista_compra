@@ -5,36 +5,35 @@
 
 /*
 	El tamany es sempre amb % i em. Excepte el border "border-top: 1px " 
-	-
 */
 
 
 <style>
-		body{
-			font-size: 100%;
-		}
 
-		.contenedor{
-			width: 90%;
-			margin: 0 auto;
-			background: #dce2e5;
-			max-width: 75em; /* 1200px / 16px */
-		}
+    body {
+        font-size: 100%;
+        font-family: Verdana, Arial, sans-serif ;
+    }
+
+    .contenedor {
+        width: 90%;
+        margin: 0 auto;
+        background: #dce2e5;
+        max-width: 75em; /* 1200px / 16px */
+    }
 		
-		h1{
-			
-			
-		}
+    h1 {
+    }
 		
 
-		header{
-			background: #ff6854;
-			overflow: hidden;
-			padding: 0.9375em; /* 15px / 16px */
-		}
+    header{
+        background: #ff6854;
+        overflow: hidden;
+        padding: 0.9375em; /* 15px / 16px */
+        font-family: Verdana, Arial, sans-serif ;
+    }
 
 
-/*
 		.logo{
 			display: block;
 			float: left;
@@ -45,7 +44,7 @@
 			max-width: 100%;
 
 		}
-*/
+
 		nav{
 			float: right;
 			margin-top: 0.3125em;
@@ -89,6 +88,7 @@
         
         .contingut {
             background: #9ce317;
+            font-family: Verdana, Arial, sans-serif ;
             flex: 3 1 0px;
             padding: 1rem;
             order: 2;
@@ -96,6 +96,7 @@
         
         .lateral-1 {
             background: #16c1c7;
+            font-family: Verdana, Arial, sans-serif ;
             flex: 1 1 0px;
             padding: 1rem;
             order: 1;
@@ -107,20 +108,16 @@
             padding: 1rem;
             order: 3;
         }
-        
-        
-		
-		 footer {
+
+        footer {
             background: #0f0e0e;
+            font-family: Verdana, Arial, sans-serif ;
             color: #fff;
+            padding: 10px ;
             flex: 1 1 100%;
             text-align: center;
             order: 4;
         }
-		
-		
-		
-		
 		
 
 		/*Medias Quieres en los  910px*/
@@ -143,9 +140,6 @@
 
 
 		}/* Fin de Medias Quieres*/
-
-
-
 
 
 		/*Medias Quieres en los  620px*/
@@ -188,7 +182,6 @@
 			}
 
 
-
 			/*Estilos para el boton de 3 linea*/
 			#menumovil{
 				display: block;
@@ -222,8 +215,6 @@
 				border-bottom: 12px double #ff6854;
 			}
 
-
-
 		}/* Fin de Medias Quieres*/
 		
 		           
@@ -255,7 +246,25 @@
         }  /* Fin de Medias Quieres*/   
 
 
-/* Css Afegir: pantalla per entrar el producte a comprar*/
+/* CSS per la sub-part SPA */
+#SPA_data {
+    background: #E0E0E0 ;
+    font-family: Verdana, Arial, sans-serif ;
+    color: blue ;
+    padding: 10px ;
+}
+
+#my_date {
+    background: #006600 ;
+    color: yellow ;
+    padding: 5px ;
+}
+#my_status {
+    background: red ;
+}
+
+
+/* CSS Afegir: pantalla per entrar el producte a comprar*/
 
 .button-afegir { /* clase general */
   border: 1px solid #dedede;
@@ -263,9 +272,8 @@
   color: #555;
   display: inline-block;
   font: bold 12px/12px HelveticaNeue, Arial;
-   padding: 8px 11px; 
+  padding: 8px 11px; 
   text-decoration: none;
- 
 }
 
 .button-afegir.white{
@@ -282,9 +290,8 @@
     border-color: #c7c7c7 #c3c3c3 #bebebe;
     box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
     text-shadow: 0 1px 0 #fdfdfd;
-	background: red;
-  background: linear-gradient(red, orange); 
-
+    background: red;
+    background: linear-gradient(red, orange); 
 }
 
 
@@ -293,5 +300,5 @@ input[name="producte"] {
 }
 
 
-	</style>
+</style>
 

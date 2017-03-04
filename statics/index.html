@@ -94,6 +94,7 @@
         $.get( 'afegir.htm', function( page ) {
             console.log( '*** Demanem al server el fitxer AFEGIR.HTM' ) ;       
             $( "#SPA_data" ).html( page ) ;
+            Posar_Linia_Status( "Afegir OK" )
         }) ; // get afegir.htm
     }) ; // click on menu "afegir" link
 

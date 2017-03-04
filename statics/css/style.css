@@ -249,6 +249,7 @@
 		/* CSS Afegir: pantalla per entrar el producte a comprar*/
 
 .button_afegir { /* clase general */
+  float:left;
   border: 1px solid #dedede;
   border-radius: 3px;
   color: #555;
@@ -278,6 +279,7 @@
 
 
 input[name="producte"] {
+	display: inline-block;
   width: 75%;
 }
 

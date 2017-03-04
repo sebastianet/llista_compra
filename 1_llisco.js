@@ -20,6 +20,7 @@
 //     1.2.d - AFEGIR.HTM
 //     1.2.e - posar el menu on era, responsive
 //     1.2.f - cal instalar BODYPARSER
+//     1.2.g - Afegit insertar producte 
 
 
 "use strict";
@@ -35,6 +36,7 @@ var path         = require( 'path' ) ;
 var bodyParser   = require( "body-parser" ) ;                    // npm install body-parser
 
 var sqlite3 = require('sqlite3').verbose();
+var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
      var myVersio        = 'v 1.2.f' ;                           // version identifier
@@ -122,8 +124,10 @@ var szDadesMostrar  = ' ' ;
 
           rows.forEach( function (row) {
                console.log( row.numid, row.producte );
+               console.log( '=== numid    [' + row.numid + ']' );
                console.log( '=== producte [' + row.producte + ']' );
                szDadesMostrar += '<p>' + row.producte + '</p>' ;
+               
           }) ;
           mydb.close();
           console.log( ">>> Llista de la compra : ************** " + szDadesMostrar ) ;
@@ -145,16 +149,72 @@ var szDadesAfegir  = 'OK' ;
 
 app.post( "/insertProducte", function (req, res){
 
-var szDadesInsertData    = '.' ;                 
-var szDadesInsertResult  = '<p>OK</p>' ;                 
+    var szDadesInsertData    = '.' ;                 
+    var szDadesInsertResult  = 'OK' ;  
+                  
 
      console.log( '>>> Body posted ' + JSON.stringify( req.body ) ) ; // dump request body
 
-var New_Prod_Descript = req.body.new_prod_descr ;
+    var New_Prod_Descript = req.body.new_prod_descr ;
+    
+    var mydb = new sqlite3.Database( dbfilename ) ;
+    
+    // recuperem maxim de " + numid" 
+    console.log("Recuperem el ultim producte afegit a la bbdd  ");
+    
+    mydb.all( "SELECT max(numid),numid,producte FROM tbl_llisco", function(err, rows) { // get data into "rows"
+		    console.log("rows recuperades: " + rows);
+          if(err) {
+	           var nzNumidaInsertar = 0;
+	           console.log("acces a la bbdd amb error: " + err);
+               szDadesInsertData =  row.producte   ; 	       
+	           
+          } else {
+	          
+               rows.forEach( function (row) {
+	                	                
+	                
+                    console.log( row.numid, row.producte );
+                    console.log( '=== numid    [' + row.numid + ']' );
+                    console.log( '=== producte [' + row.producte + ']' );
+                                         
+                    szDadesInsertData =  row.producte   ;
+                    
+                    console.log( '=== read data [' + szDadesInsertData + ']' );
+                    
+                    var nzNumidaInsertar = row.numid + 1;
+               })
+          } ;
+          
+               
+     // insertem el producte a comprar  
+        console.log("Anem a insertar el producte alm el ultim numid + 1  ");
+        mydb.run("INSERT INTO tbl_llisco (numid, producte) VALUES (?,?)",
+              [nzNumidaInsertar,New_Prod_Descript], function(err){
+                   if (err) {
+	                   console.log("Error al insertar " + New_Prod_Descript + '***ERR*** ' + err);
+	                   szDadesInsertResult = 'Afegir ' + New_Prod_Descript + 'ERROR' ; 
+                   } else {
+	                   console.log( ">>> /insert prod {" + New_Prod_Descript + "}." ) ;
+	                   szDadesInsertResult = 'Afegir ' + New_Prod_Descript + ' OK' ; 
+                   };
+                   
+                   console.log( ">>> Llista de la compra : Dades insertades " + szDadesInsertData ) ;
+                   console.log( ">>> Llista de la compra : Dades al client " + szDadesInsertResult ) ;
 
-     console.log( ">>> /insert prod {" + New_Prod_Descript + "}." ) ;
-     res.end( szDadesInsertResult ) ;
+                   res.end( szDadesInsertResult ) ; // send to client
 
+               });
+         
+          mydb.close();
+                    
+     });	
+
+
+
+
+
+     
 }); // branca "/insertProducte"
 
 
@@ -167,8 +227,8 @@ var New_Prod_Descript = req.body.new_prod_descr ;
 // creacio del servidor
 // ====================
 
-//  var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-   var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+ var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+//    var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

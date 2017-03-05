@@ -82,6 +82,8 @@
             max-width: 80%;
             margin: 1rem auto;
 */
+            
+            flex-direction: row;
             flex-wrap: wrap;
             display: flex;
         }
@@ -286,6 +288,7 @@ input[name="producte"] {
 
 /* CSS per la sub-part SPA */
 #SPA_data {
+	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: space-between;
     display: flex;

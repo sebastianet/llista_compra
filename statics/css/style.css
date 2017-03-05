@@ -286,6 +286,9 @@ input[name="producte"] {
 
 /* CSS per la sub-part SPA */
 #SPA_data {
+	flex-wrap: wrap;
+	justify-content: space-between;
+    display: flex;
     background: #E0E0E0 ;
     font-family: Verdana, Arial, sans-serif ;
     color: blue ;

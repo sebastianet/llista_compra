@@ -1,6 +1,6 @@
 
 // =============================================================================
-// proves de lectura de dades de una base de dades a nodejs
+// proves de operacions amb una base de dades sqlite3 des nodejs
 // despres, posarem les dades en una pagina HTML
 // Origen : http://www.w3resource.com/node.js/nodejs-sqlite.php
 //          https://docs.cozy.io/en/hack/getting-started/first-app.html
@@ -55,6 +55,7 @@ app.get('/', function(req, res) {
 });
 
 
+// ----------------------------------------------------------------------------
 // Posar a la BBDD
 // URL al client : http://192.168.1.123:4545/posar/nou_producte="AAA BBB"
 //                 http://192.168.1.123:4545/posar/nou_producte=patates%20amb%20suc
@@ -76,7 +77,31 @@ my_db.close();
 var szOut = "Hem posat {" + Producte_Nou + "}"
     res.status( 200 ).send( szOut ) ;  ;
 
-});
+}); // posar a la BBDD
+
+// ----------------------------------------------------------------------------
+// esborrar de la BBDD
+// entrada : index
+// URL al client : http://192.168.1.123:4545/borra/id_producte=4
+// sample : https://docs.cozy.io/en/hack/getting-started/first-app.html
+
+app.get( '/borra/id_producte=:res_id_prod', function (req, res) { 
+
+var id_Producte_esborrar = req.params.res_id_prod ;
+
+var szDel = '+++ add (' + id_Producte_esborrar + '). ' ;
+    console.log( '=== DEL data ' + szDel ) ;
+
+var my_db = new sqlite3.Database( dbfilename ) ;
+
+my_db.run( "DELETE FROM tbl_llisco WHERE numid='" + id_Producte_esborrar + "'" ) ;
+
+my_db.close();
+
+var szOut = "Hem esborrat el id {" + id_Producte_esborrar + "}"
+    res.status( 200 ).send( szOut ) ;  ;
+
+}); // borra
 
 // =============================================================================
 // start the server

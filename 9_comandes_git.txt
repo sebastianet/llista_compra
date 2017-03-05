@@ -12,4 +12,6 @@
  git remote -v                           mostrar el repositori remot que fem servir
 
  git --version                           mostrar versio : git version 2.1.4
+
+ git log                                 veure els darrers moviments
 .

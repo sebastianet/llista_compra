@@ -20,7 +20,8 @@
 //     1.2.d - AFEGIR.HTM
 //     1.2.e - posar el menu on era, responsive
 //     1.2.f - cal instalar BODYPARSER
-//     1.2.g - Afegit insertar producte 
+//     1.2.g - afegit insertar producte 
+//     1.2.h - enviem el ID de la BBDD al client (per poder dir quin vol esborrar)
 
 
 "use strict";
@@ -39,7 +40,7 @@ var sqlite3 = require('sqlite3').verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.2.g' ;                           // version identifier
+     var myVersio        = 'v 1.2.h' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
@@ -113,27 +114,42 @@ var szEnric  = ' ' ;
 
 app.get( "/mostrar", function (req, res) {
 
-var szDadesMostrar  = ' ' ;
+// read the data from SQLITE database and send some data to client
 
-     // read the data from SQLITE database
+// cada element de la llista de la compra es posa en un element de una llista, on cadascun es de l'estil :
+//     <li> <a href="#" id="containing_element"> Content <input type="hidden" id="key" value="value" /> </a> </li>
+// see http://stackoverflow.com/questions/2772103/storing-arbitrary-data-in-html
 
-     console.log( "/mostrar : fer sqlite3 SELECT" ) ;
+var szDadesMostrar  = '' ;
+var szLinia_LI      = '' ;
+
+     console.log( ">>> /mostrar : fer sqlite3 SELECT" ) ;
 
      var mydb = new sqlite3.Database( dbfilename ) ;
+
+     szDadesMostrar = '<ul>' ;
 
      mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) { // get data into "rows"
 
           rows.forEach( function (row) {
+
                console.log( row.numid, row.producte );
                console.log( '=== numid    [' + row.numid + ']' );
                console.log( '=== producte [' + row.producte + ']' );
-               szDadesMostrar += '<br>' + row.producte + '</br>' ;
+
+               szLinia_LI = '<a href="#" id="ID_ELEMENT_BBDD">' ;
+               szLinia_LI += row.producte ;
+               szLinia_LI += '<input type="hidden" id="MY_BBDD_KEY" value="' + row.numid + '" /> </a>' ;
+
+               szDadesMostrar += '<li> ' + szLinia_LI + ' </li>' ;
                
           }) ;
 
           mydb.close();
 
-          console.log( ">>> /mostrar - la llista de la compra es : ************** " + szDadesMostrar ) ;
+          szDadesMostrar += '</ul>' ;
+
+          console.log( ">>> /mostrar - la llista de la compra es {" + szDadesMostrar + "}." ) ;
           res.end( szDadesMostrar ) ; // send to client
 
      }); // select

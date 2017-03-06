@@ -127,7 +127,7 @@ var szDadesMostrar  = ' ' ;
                console.log( row.numid, row.producte );
                console.log( '=== numid    [' + row.numid + ']' );
                console.log( '=== producte [' + row.producte + ']' );
-               szDadesMostrar += '<p>' + row.producte + '</p>' ;
+               szDadesMostrar += '<br>' + row.producte + '</br>' ;
                
           }) ;
 

@@ -9,23 +9,22 @@
 
 $( "#button_afegir" ).click( function() { 
 
-  
     var my_new_producte = {
         new_prod_descr : $( '#nou_producte' ).val() 
     } ; // my_new_producte
 
 
     console.log( "### Han fet click al boto afegir - dades {" + my_new_producte.new_prod_descr + "}." ) ;
-	    
-// demanem al server que inserti el producte a la BBDD
+  
+    console.log( '*** 1.- Demanem al server que inserti el producte a la BBDD.' ) ; 
 
     $.post( '/insertProducte', my_new_producte, function( page ) {  
 	    
-        console.log( '*** Demanem al server que inserti el producte a la BBDD i mostrem el resultat.' ) ; 
+        console.log( '*** 2.- Mostrem el resultat.' ) ; 
         
         Posar_Linia_Status( page ) ;
        
-          }) ; // post /insertProducte
+    }) ; // post /insertProducte
  
 }) ;// click afegir producte
 

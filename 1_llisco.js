@@ -22,6 +22,7 @@
 //     1.2.f - cal instalar BODYPARSER
 //     1.2.g - afegit insertar producte 
 //     1.2.h - enviem el ID de la BBDD al client (per poder dir quin vol esborrar)
+//     1.3.a - enviar JSON(rows)
 
 
 "use strict";
@@ -40,7 +41,7 @@ var sqlite3 = require('sqlite3').verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.2.h' ;                           // version identifier
+     var myVersio        = 'v 1.3.a' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
@@ -53,7 +54,7 @@ var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // tell Express to load static files (if there any) from public or static folder
 
-     app.use( express.static(path.join(__dirname + '/statics' ) ) ) ;
+     app.use( express.static( path.join( __dirname + '/statics' ) ) ) ;
 //     app.use( express.static( __dirname + '/statics' ) ) ;
 //     app.use( '/', express.static( __dirname + '/statics' ) ) ;    
 
@@ -87,7 +88,8 @@ Date.prototype.hhmmss = function () {
           ss = fixTime( today.getSeconds() ) ;
      var myHHMMSS = hh + ':' + mm + ':' + ss ;
      return myHHMMSS ;
-} ; // hhmmss
+
+} ; // hhmmss()
 
 
 // escriure un missatge inicial a la consola
@@ -120,44 +122,15 @@ app.get( "/mostrar", function (req, res) {
 //     <li> <a href="#" id="containing_element"> Content <input type="hidden" id="key" value="value" /> </a> </li>
 // see http://stackoverflow.com/questions/2772103/storing-arbitrary-data-in-html
 
-var szDadesMostrar  = '' ;
-var szLinia_LI      = '' ;
-
      console.log( ">>> /mostrar : fer sqlite3 SELECT" ) ;
 
      var mydb = new sqlite3.Database( dbfilename ) ;
 
-     szDadesMostrar = '<ul>' ;
-
      mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) { // get data into "rows"
 
-/*
-          rows.forEach( function (row) {
-
-               console.log( row.numid, row.producte );
-               console.log( '=== numid    [' + row.numid + ']' );
-               console.log( '=== producte [' + row.producte + ']' );
-
-               szLinia_LI = '<a href="#" id="ID_ELEMENT_BBDD">' ;
-               szLinia_LI += row.producte ;
-               szLinia_LI += '<input type="hidden" id="MY_BBDD_KEY" value="' + row.numid + '" /> </a>' ;
-
-               szDadesMostrar += '<li> ' + szLinia_LI + ' </li>' ;
-               
-          }) ;
-*/
-
-          mydb.close();
-
-//           szDadesMostrar += '</ul>' ;
-
-          console.log( ">>> /mostrar - la llista de la compra es " + res.json(rows) + ">>> /mostrar - fi la llista compra "  ) ;
-          // el resultat del console es "la llista de la compra es [object Object]" i no se com transormarlos a un string 
-          // per llistar a la console. NOTA: el res.json.stringify(row) no FUNCIONA : "TypeError: res.json.stringify is not a function"
-
-          
-
-         // res.end( szDadesMostrar ) ; // send to client
+          mydb.close() ;
+          if (err) return next(err) ;
+          res.json( rows ) ;
 
      }); // select
     
@@ -218,8 +191,8 @@ app.post( "/insertProducte", function (req, res) {
 // creacio del servidor
 // ====================
 
-var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-//     var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+// var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+     var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

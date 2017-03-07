@@ -85,28 +85,23 @@
         console.log( ">>> Menu click_mostrar" ) ;
 
         $.get( '/mostrar', function( json_llista_de_la_compra ) {
+//        $.getJSON( '/mostrar', function( json_llista_de_la_compra ) {
         	        
-            alert( "json_llista_de_la_compra" + json_llista_de_la_compra ) ;
+            console.log( "json_llista_de_la_compra {" + json_llista_de_la_compra + "}" ) ;
+            console.log( "### cnt es: " + json_llista_de_la_compra.length ) ;	  
+ 
+for ( var i = 0 ; i < json_llista_de_la_compra.length ; i++ ) {
 
-            var temporal = JSON.stringify( json_llista_de_la_compra ) ;
-            alert( "temporal es: " + temporal ) ;	  
-  
-            JSONItems = JSON.parse( temporal ) ;
-            alert( "JSONItems" + JSONItems ) ;
-       
-            var page = 'ul class=\'list-style-type\'>' + 
-                JSON.stringify( json_llista_de_la_compra ).map ( function (obj) {
+//  var $el = $('<p/>').attr("data-id",list[i].id).text(list[i].item);
 
-                    return  ' <li> ' +
-                       ' <div class=\'seleccioproducte\'> ' +
-	               ' <input type=\'checkbox\' name=\'producte_seleccionat\' data-key=\' '  + obj.numid + '\'/> ' +
-	               ' <span class=\'producte_seleccionat\' data-key=\' '  + obj.producte + '\'>' + obj.producte + '</span> ' +
-	               ' </div> ' +
-	               ' </li> ';
-                }) + 
-                '</ul>';	   	
-            alert(page);            
-	        
+var my_id  = json_llista_de_la_compra[i].numid ;
+var my_txt = json_llista_de_la_compra[i].producte ;
+
+        console.log( ">>> idx " + i ) ;
+        console.log( ">>> id " + my_id ) ;
+        console.log( ">>> txt " + my_txt ) ;
+} ;
+
         }) ; // get /mostrar
     }) ; // click on menu "mostrar" link
 

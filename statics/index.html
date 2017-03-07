@@ -84,23 +84,30 @@
 
         console.log( ">>> Menu click_mostrar" ) ;
 
-        $.get( '/mostrar', function( json_llista_de_la_compra ) {
-//        $.getJSON( '/mostrar', function( json_llista_de_la_compra ) {
+        $.get( '/mostrar', function( json_llista_de_la_compra ) { // o .getJSON
         	        
             console.log( "json_llista_de_la_compra {" + json_llista_de_la_compra + "}" ) ;
             console.log( "### cnt es: " + json_llista_de_la_compra.length ) ;	  
  
-for ( var i = 0 ; i < json_llista_de_la_compra.length ; i++ ) {
+            var szPosa = '<ul>' ;
+            $( "#SPA_data" ).append( szPosa ) ;
 
-//  var $el = $('<p/>').attr("data-id",list[i].id).text(list[i].item);
+            for ( var i = 0 ; i < json_llista_de_la_compra.length ; i++ ) {
 
-var my_id  = json_llista_de_la_compra[i].numid ;
-var my_txt = json_llista_de_la_compra[i].producte ;
+                var my_id  = json_llista_de_la_compra[i].numid ;
+                var my_txt = json_llista_de_la_compra[i].producte ;
 
-        console.log( ">>> idx " + i ) ;
-        console.log( ">>> id " + my_id ) ;
-        console.log( ">>> txt " + my_txt ) ;
-} ;
+                console.log( ">>> idx " + i ) ;
+                console.log( ">>> id " + my_id ) ;
+                console.log( ">>> txt " + my_txt ) ;
+
+                var $el = $('<li/>').attr("data-id", json_llista_de_la_compra[i].numid).text(json_llista_de_la_compra[i].producte);
+                $( "#SPA_data" ).append( $el ) ;
+
+            } ;
+ 
+            szPosa = '</ul>' ;
+            $( "#SPA_data" ).append( szPosa ) ;
 
         }) ; // get /mostrar
     }) ; // click on menu "mostrar" link

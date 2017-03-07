@@ -131,6 +131,7 @@ var szLinia_LI      = '' ;
 
      mydb.all( "SELECT numid,producte FROM tbl_llisco", function(err, rows) { // get data into "rows"
 
+/*
           rows.forEach( function (row) {
 
                console.log( row.numid, row.producte );
@@ -144,13 +145,19 @@ var szLinia_LI      = '' ;
                szDadesMostrar += '<li> ' + szLinia_LI + ' </li>' ;
                
           }) ;
+*/
 
           mydb.close();
 
-          szDadesMostrar += '</ul>' ;
+//           szDadesMostrar += '</ul>' ;
 
-          console.log( ">>> /mostrar - la llista de la compra es {" + szDadesMostrar + "}." ) ;
-          res.end( szDadesMostrar ) ; // send to client
+          console.log( ">>> /mostrar - la llista de la compra es " + res.json(rows) + ">>> /mostrar - fi la llista compra "  ) ;
+          // el resultat del console es "la llista de la compra es [object Object]" i no se com transormarlos a un string 
+          // per llistar a la console. NOTA: el res.json.stringify(row) no FUNCIONA : "TypeError: res.json.stringify is not a function"
+
+          
+
+         // res.end( szDadesMostrar ) ; // send to client
 
      }); // select
     
@@ -211,8 +218,8 @@ app.post( "/insertProducte", function (req, res) {
 // creacio del servidor
 // ====================
 
-// var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-    var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+//     var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

@@ -80,6 +80,7 @@
         $( "#my_status" ).html( szStatus ) ;
     } ;
 
+/*
     $( "#clk_menu_mostrar" ).click( function() {
         console.log( "### Menu click_mostrar" ) ;
         $.get( '/mostrar', function( page ) {
@@ -88,6 +89,51 @@
             Posar_Linia_Status( "Mostrar OK" ) ;
         }) ; // get /mostrar
     }) ; // click on menu "mostrar" link
+*/
+    
+    $( "#clk_menu_mostrar" ).click( function() {
+        console.log( "### Menu click_mostrar" ) ;
+        $.get( '/mostrar', function( json_llista_de_la_compra ) {
+	        	        
+            // Montem la page
+            
+            alert("json_llista_de_la_compra" + json_llista_de_la_compra);
+	        var temporal = JSON.stringify(json_llista_de_la_compra);
+	        alert("temporal es: " + temporal);	  
+            
+	         
+	         JSONItems = JSON.parse(temporal);
+	         alert("JSONItems" + JSONItems);
+	       
+		               
+
+	        var page = 'ul class=\'list-style-type\'>' + 
+	                   JSON.stringify(json_llista_de_la_compra).map (function (obj) {
+		                 
+		                   return  ' <li> ' +
+							       ' <div class=\'seleccioproducte\'> ' +
+					               ' <input type=\'checkbox\' name=\'producte_seleccionat\' data-key=\' '  + obj.numid + '\'/> ' +
+					               ' <span class=\'producte_seleccionat\' data-key=\' '  + obj.producte + '\'>' + obj.producte + '</span> ' +
+					               ' </div> ' +
+					               ' </li> ';
+			            })	+ 
+			            
+			            '</ul>';	   	
+		                  
+		      alert(page);            
+
+		                  
+
+		         	        
+	        
+            console.log( '*** Demanem al server els productes a comprar i els mostrem a SPA text.' ) ;       
+/*
+            $( "#SPA_data" ).html( page ) ;
+            Posar_Linia_Status( "Mostrar OK" ) ;
+*/
+        }) ; // get /mostrar
+    }) ; // click on menu "mostrar" link
+
     
     $( "#clk_menu_afegir" ).click( function() {
         console.log( "### Menu click_afegir" ) ;

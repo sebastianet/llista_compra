@@ -43,8 +43,6 @@
         
         <article class="contingut">
 
-            <h1> CONTINGUT PRINCIPAL - SPA </h1>
-
             <div id="SPA_data">
                 <p> Aquesta es la part SPA de la pagina</p>
             </div>
@@ -89,8 +87,8 @@
             console.log( "json_llista_de_la_compra {" + json_llista_de_la_compra + "}" ) ;
             console.log( "### cnt es: " + json_llista_de_la_compra.length ) ;	  
  
-            var szPosa = '<ul>' ;
-            $( "#SPA_data" ).append( szPosa ) ;
+            var $contenidor = $( "<ul/>" ) ;
+            $( "#SPA_data" ).html( '' ) ;    // erase old contents
 
             for ( var i = 0 ; i < json_llista_de_la_compra.length ; i++ ) {
 
@@ -101,15 +99,21 @@
                 console.log( ">>> id " + my_id ) ;
                 console.log( ">>> txt " + my_txt ) ;
 
-                var $el = $('<li/>').attr("data-id", json_llista_de_la_compra[i].numid).text(json_llista_de_la_compra[i].producte);
-                $( "#SPA_data" ).append( $el ) ;
+                var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
+
+//                $el.click( () => console.log( "+++ item click", my_id, my_txt) ) ; 
+$el.click( function(){
+    console.log( "+++ +++ item click", $el.attr("data-id") ) ;
+});
+
+                $contenidor.append( $el ) ;
 
             } ;
  
-            szPosa = '</ul>' ;
-            $( "#SPA_data" ).append( szPosa ) ;
+            $( "#SPA_data" ).append( $contenidor ) ;
 
         }) ; // get /mostrar
+
     }) ; // click on menu "mostrar" link
 
     

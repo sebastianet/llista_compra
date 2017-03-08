@@ -118,11 +118,7 @@ var szEnric  = ' ' ;
 
 app.get( "/mostrar", function (req, res) {
 
-// read the data from SQLITE database and send some data to client
-
-// cada element de la llista de la compra es posa en un element de una llista, on cadascun es de l'estil :
-//     <li> <a href="#" id="containing_element"> Content <input type="hidden" id="key" value="value" /> </a> </li>
-// see http://stackoverflow.com/questions/2772103/storing-arbitrary-data-in-html
+// read the data from SQLITE database and send it to client as JSON
 
      console.log( ">>> /mostrar : fer sqlite3 SELECT" ) ;
 
@@ -189,23 +185,23 @@ app.post( "/deleteProducte", function (req, res) {
 
     var szDadesDeleteResult  = 'OK' ;
 
-    console.log( '>>> Body posted ' + JSON.stringify( req.body ) ) ; // dump request body
+    console.log( '>>> Delete bdy posted ' + JSON.stringify( req.body ) ) ; // dump request body
 
-    var Del_producte_Id = req.body.del_producte_Id ;
+    var Del_producte_Id    = req.body.del_producte_Id ;
     var Del_producte_Descr = req.body.del_producte_Descr ;
     
     var mydb = new sqlite3.Database( dbfilename ) ;
     
     // esborrem el producte a comprar  
-    console.log( ">>> Anem a esborrar el producte" );
+    console.log( ">>> Anem a esborrar el producte amb ID {", Del_producte_Id, "}." );
 
     mydb.run( "DELETE FROM tbl_llisco where numid = " + Del_producte_Id , function(err) {
 
         if (err) {
-            console.log( "Error al esborrar " + Del_producte_Descr + '***ERR*** ' + err ) ;
+            console.log( "--- Error al esborrar " + Del_producte_Descr + '***ERR*** ' + err ) ;
             szDadesDeleteResult = '--- Esborrar ' + Del_producte_Descr + 'ERROR' ; 
         } else { // err is null if insertion was successful
-            console.log( ">>> /delete OK : prod {" + Del_producte_Descr + "} at ID [" + Del_producte_Id + "]." ) ;
+            console.log( "+++ /delete OK : prod {" + Del_producte_Descr + "} at ID [" + Del_producte_Id + "]." ) ;
             szDadesDeleteResult = '+++ Esborrar ' + Del_producte_Descr + ' OK' ; 
         };
                    
@@ -221,7 +217,6 @@ app.post( "/deleteProducte", function (req, res) {
 }); // branca "/deleteProducte"
 
 
-
 // app.get( "/", function (req, res) {
 //      console.log( ">>> Serve index.html" ) ;
 //      res.sendFile( "index.html" ) ;
@@ -231,8 +226,8 @@ app.post( "/deleteProducte", function (req, res) {
 // creacio del servidor
 // ====================
 
-var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-//      var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+// var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
+     var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

@@ -114,27 +114,22 @@
             $( "#SPA_data" ).append( $contenidor ) ;
             
             
-            $("#SPA_data ul li" ).click( function() {
+            $( "#SPA_data ul li" ).click( function() {
 	            
-	            // recuperar id producte
-// 	            var data-id = $(this).attr("data-id"); 
-	            var my_del_producte = {
-                     del_producte_Id : $(this).attr("data-id"),
-                     del_producte_Descr : $(this).text()
-                     } ; // my_del_producte
+                var my_del_producte = {
+                    del_producte_Id    : $(this).attr("data-id"), // recuperar id producte
+                    del_producte_Descr : $(this).text()
+                } ; // my_del_producte
 
-	            // Cridar al server per  eborrar
-				$.post( '/deleteProducte', my_del_producte, function( page ) {
+                console.log( ">>> ESP vol esborrar id " + del_producte_Id + ", txt " + del_producte_Descr ) ;
+
+                $.post( '/deleteProducte', my_del_producte, function( page ) { // Cridar al server per esborrar
 						
-						Posar_Linia_Status( page ) ;
+                    Posar_Linia_Status( page ) ;
 						
-						 // Cridar al server per  mostrar els productes 
-						 // Quan es defineixi una funcio "mostrar" ho farem
-						           	            
-	           }); // post
+	        }); // post
 	            
-	            
-              }) // #SPA_data ul li" ).click
+            }) // #SPA_data ul li" ).click
 	   
         }) ; // get /mostrar
 

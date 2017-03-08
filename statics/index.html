@@ -98,20 +98,48 @@
                 console.log( ">>> idx " + i ) ;
                 console.log( ">>> id " + my_id ) ;
                 console.log( ">>> txt " + my_txt ) ;
-
-                var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
+                
+//                 var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
+                var $el = $('<li>').attr( "data-id", my_id).text( my_txt ) ;
+     
 
 //                $el.click( () => console.log( "+++ item click", my_id, my_txt) ) ; 
-$el.click( function(){
-    console.log( "+++ +++ item click", $el.attr("data-id") ) ;
-});
+
+/* anulat perque sempre surt el ultim
+                $el.click( function(){
+                   console.log( "+++ +++ item click", $el.attr("data-id") ) ;
+                });
+*/
 
                 $contenidor.append( $el ) ;
 
             } ;
  
             $( "#SPA_data" ).append( $contenidor ) ;
+            
+            
+            $("#SPA_data ul li" ).click( function() {
+	            
+	            // recuperar id producte
+// 	            var data-id = $(this).attr("data-id"); 
+	            var my_del_producte = {
+                     del_producte_Id : $(this).attr("data-id"),
+                     del_producte_Descr : $(this).text()
+                     } ; // my_del_producte
 
+	            // Cridar al server per  eborrar
+				$.post( '/deleteProducte', my_del_producte, function( page ) {
+						
+						Posar_Linia_Status( page ) ;
+						
+						 // Cridar al server per  mostrar els productes 
+						 // Quan es defineixi una funcio "mostrar" ho farem
+						           	            
+	           }); // post
+	            
+	            
+              }) // #SPA_data ul li" ).click
+	   
         }) ; // get /mostrar
 
     }) ; // click on menu "mostrar" link

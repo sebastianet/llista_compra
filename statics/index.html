@@ -95,20 +95,21 @@
                 var my_id  = json_llista_de_la_compra[i].numid ;
                 var my_txt = json_llista_de_la_compra[i].producte ;
 
-                console.log( ">>> idx " + i ) ;
-                console.log( ">>> id " + my_id ) ;
-                console.log( ">>> txt " + my_txt ) ;
+                console.log( ">>> idx " + i, ", id " + my_id + ", txt " + my_txt ) ;
 
                 var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
 
-//                $el.click( () => console.log( "+++ item click", my_id, my_txt) ) ; 
-$el.click( function(){
-    console.log( "+++ +++ item click", $el.attr("data-id") ) ;
-});
+                var elclick = ( function ( id, txt ) {
+
+                    return function() { console.log( "+++ u did click ", id, txt) ; }
+
+                } ) ( my_id, my_txt ) ;
+
+                $el.click( elclick ) ;
 
                 $contenidor.append( $el ) ;
 
-            } ;
+            } ; // for
  
             $( "#SPA_data" ).append( $contenidor ) ;
 

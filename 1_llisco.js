@@ -24,6 +24,7 @@
 //     1.2.h - enviem el ID de la BBDD al client (per poder dir quin vol esborrar)
 //     1.3.a - enviar JSON(rows)
 //     1.3.b - rebre JSON(rows)
+//     1.3.c - click on LI funciona
 
 
 "use strict";
@@ -42,7 +43,7 @@ var sqlite3 = require('sqlite3').verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.3.b' ;                           // version identifier
+     var myVersio        = 'v 1.3.c' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      

@@ -90,7 +90,31 @@
             var $contenidor = $( "<ul/>" ) ;
             $( "#SPA_data" ).html( '' ) ;    // erase old contents
 
+            	 json_llista_de_la_compra.forEach(function (obj, index) {        
+
+                var my_id  = obj.numid ;
+                var my_txt = obj.producte ;
+
+                console.log( ">>> idx " + index, ", id " + my_id + ", txt " + my_txt ) ;
+
+                var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
+
+                var elclick = ( function ( id, txt ) {
+
+                    return function() { console.log( "+++ u did click ", id, txt) ; }
+
+                } ) ( my_id, my_txt ) ;
+
+                $el.click( elclick ) ;
+
+                $contenidor.append( $el ) ;
+
+            }) ; // get /mostrar
+            
+            
+/*
             for ( var i = 0 ; i < json_llista_de_la_compra.length ; i++ ) {
+	            
 
                 var my_id  = json_llista_de_la_compra[i].numid ;
                 var my_txt = json_llista_de_la_compra[i].producte ;
@@ -110,6 +134,8 @@
                 $contenidor.append( $el ) ;
 
             } ; // for
+*/
+
  
             $( "#SPA_data" ).append( $contenidor ) ;
             

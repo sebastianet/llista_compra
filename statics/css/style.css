@@ -320,7 +320,7 @@ input[name="producte"] {
 }
 
 input[name="producte"]:focus {
-    outline: none !important;
+    outline: none !important;  /* perque no tregui valor per defecte del user agent */
     border:3px solid #b0b0b0;
 	box-shadow: 2px 6px 3px #888888;
 }

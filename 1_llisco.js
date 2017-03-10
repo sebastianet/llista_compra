@@ -26,6 +26,11 @@
 //     1.3.b - rebre JSON(rows)
 //     1.3.c - click on LI funciona
 //     1.3.d - fer servir HOSTNAME per escollir la IP del nostre servidor
+//     1.3.e - modificar afegir per no permetre grabar producte en blanc 
+//     1.3.f - modificar afegir per blanquejar el camp despres dun insert.
+//     1.3.e - Donar style a la page afegir.
+
+//      
 
 
 "use strict";
@@ -174,7 +179,7 @@ app.post( "/insertProducte", function (req, res) {
                     
     }); // sqlite3 insert
 
-}); // post "/deleteProducte"
+}); // post "/insertProducte"
 
 
 

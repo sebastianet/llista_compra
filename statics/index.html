@@ -124,24 +124,6 @@
             
             $( "#SPA_data" ).append( $contenidor ) ;
 
-/*
-            $( "#SPA_data ul li" ).click( function() {
-	            
-                var my_del_producte = {
-                    del_producte_Id    : $(this).attr("data-id"), // recuperar id producte
-                    del_producte_Descr : $(this).text()
-                } ; // my_del_producte
-
-                console.log( ">>> ESP esborrar id " + my_del_producte.del_producte_Id + ", txt " + my_del_producte.del_producte_Descr ) ;
-
-                $.post( '/deleteProducte', my_del_producte, function( page ) { // Cridar al server per esborrar
-						
-                    Posar_Linia_Status( page ) ;
-						
-	        }); // post
-	            
-            }) // #SPA_data ul li" ).click
-*/
 
         }) ; // get /mostrar
 

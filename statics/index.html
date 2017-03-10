@@ -84,13 +84,13 @@
 
         $.get( '/mostrar', function( json_llista_de_la_compra ) { // o .getJSON
         	        
-            console.log( "json_llista_de_la_compra {" + json_llista_de_la_compra + "}" ) ;
-            console.log( "### cnt es: " + json_llista_de_la_compra.length ) ;	  
+//            console.log( "json_llista_de_la_compra {" + json_llista_de_la_compra + "}" ) ;
+            console.log( "+++ nombre de elements de la llista de la compra : " + json_llista_de_la_compra.length ) ;	  
  
             var $contenidor = $( "<ul/>" ) ;
             $( "#SPA_data" ).html( '' ) ;    // erase old contents
 
-            	 json_llista_de_la_compra.forEach(function (obj, index) {        
+            json_llista_de_la_compra.forEach( function (obj, index) {        
 
                 var my_id  = obj.numid ;
                 var my_txt = obj.producte ;
@@ -101,7 +101,17 @@
 
                 var elclick = ( function ( id, txt ) {
 
-                    return function() { console.log( "+++ u did click ", id, txt) ; }
+                    return function() {
+                        console.log( "+++ U did click to delete ", id, txt ) ;
+                        var del_producte = {
+                            del_producte_Id    : id,
+                            del_producte_Descr : txt
+                        } ; // create del_producte
+
+                        $.post( '/deleteProducte', del_producte, function( page ) { // cridar al server per esborrar
+                            Posar_Linia_Status( page ) ;
+	                }); // post
+                    }
 
                 } ) ( my_id, my_txt ) ;
 
@@ -109,37 +119,12 @@
 
                 $contenidor.append( $el ) ;
 
-            }) ; // get /mostrar
+            }) ; // for each
             
             
-/*
-            for ( var i = 0 ; i < json_llista_de_la_compra.length ; i++ ) {
-	            
-
-                var my_id  = json_llista_de_la_compra[i].numid ;
-                var my_txt = json_llista_de_la_compra[i].producte ;
-
-                console.log( ">>> idx " + i, ", id " + my_id + ", txt " + my_txt ) ;
-
-                var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
-
-                var elclick = ( function ( id, txt ) {
-
-                    return function() { console.log( "+++ u did click ", id, txt) ; }
-
-                } ) ( my_id, my_txt ) ;
-
-                $el.click( elclick ) ;
-
-                $contenidor.append( $el ) ;
-
-            } ; // for
-*/
-
- 
             $( "#SPA_data" ).append( $contenidor ) ;
-            
-            
+
+/*
             $( "#SPA_data ul li" ).click( function() {
 	            
                 var my_del_producte = {
@@ -147,7 +132,7 @@
                     del_producte_Descr : $(this).text()
                 } ; // my_del_producte
 
-                console.log( ">>> ESP vol esborrar id " + my_del_producte.del_producte_Id + ", txt " + my_del_producte.del_producte_Descr ) ;
+                console.log( ">>> ESP esborrar id " + my_del_producte.del_producte_Id + ", txt " + my_del_producte.del_producte_Descr ) ;
 
                 $.post( '/deleteProducte', my_del_producte, function( page ) { // Cridar al server per esborrar
 						
@@ -156,7 +141,8 @@
 	        }); // post
 	            
             }) // #SPA_data ul li" ).click
-	   
+*/
+
         }) ; // get /mostrar
 
     }) ; // click on menu "mostrar" link

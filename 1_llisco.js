@@ -25,6 +25,7 @@
 //     1.3.a - enviar JSON(rows)
 //     1.3.b - rebre JSON(rows)
 //     1.3.c - click on LI funciona
+//     1.3.d - fer servir HOSTNAME per escollir la IP del nostre servidor
 
 
 "use strict";
@@ -43,7 +44,7 @@ var sqlite3 = require('sqlite3').verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.3.c' ;                           // version identifier
+     var myVersio        = 'v 1.3.d' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
@@ -57,8 +58,6 @@ var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 // tell Express to load static files (if there any) from public or static folder
 
      app.use( express.static( path.join( __dirname + '/statics' ) ) ) ;
-//     app.use( express.static( __dirname + '/statics' ) ) ;
-//     app.use( '/', express.static( __dirname + '/statics' ) ) ;    
 
 // body parse
      app.use( bodyParser.urlencoded( { extended:true } ) ) ;
@@ -105,7 +104,7 @@ Date.prototype.hhmmss = function () {
 // =======================================================================
 
 
-app.get( "/enric", function (req, res) {
+app.get( "/enric", function (req, res) { // per fer proves ...
 
 var szEnric  = ' ' ;
 
@@ -116,9 +115,7 @@ var szEnric  = ' ' ;
 }); // get /enric
 
 
-app.get( "/mostrar", function (req, res) {
-
-// read the data from SQLITE database and send it to client as JSON
+app.get( "/mostrar", function (req, res) { // read the data from SQLITE database and send it to client as JSON
 
      console.log( ">>> /mostrar : fer sqlite3 SELECT" ) ;
 
@@ -128,7 +125,7 @@ app.get( "/mostrar", function (req, res) {
 
           mydb.close() ;
           if (err) return next(err) ;
-          res.json( rows ) ;
+          res.json( rows ) ;           // send result as JSON
 
      }); // select
     
@@ -142,42 +139,42 @@ var szDadesAfegir  = 'OK' ;
      console.log( ">>> /afegir : producte a afegir" ) ;
      res.end( szDadesAfegir ) ;
 
-}); // branca "/afegir"
+}); // post "/afegir"
 
 
 app.post( "/insertProducte", function (req, res) {
 
     var szDadesInsertResult  = 'OK' ;
 
-    console.log( '>>> Body posted ' + JSON.stringify( req.body ) ) ; // dump request body
+    console.log( '>>> Insert : body posted ' + JSON.stringify( req.body ) ) ; // dump request body
 
     var New_Prod_Descript = req.body.new_prod_descr ;
     
     var mydb = new sqlite3.Database( dbfilename ) ;
     
     // insertem el producte a comprar  
-    console.log( ">>> Anem a insertar el producte" );
+    console.log( ">>> Anem a insertar el producte [" + New_Prod_Descript + "]." );
 
     mydb.run( "INSERT INTO tbl_llisco (producte) VALUES (?)", New_Prod_Descript, function(err) {
 
         if (err) {
-            console.log( "Error al insertar " + New_Prod_Descript + '***ERR*** ' + err ) ;
+            console.log( "--- Error al insertar " + New_Prod_Descript + '***ERR*** ' + err ) ;
             szDadesInsertResult = '--- Afegir ' + New_Prod_Descript + 'ERROR' ; 
         } else { // err is null if insertion was successful
-            console.log( ">>> /insert OK : prod {" + New_Prod_Descript + "} at ID [" + this.lastID + "]." ) ;
+            console.log( "+++ /insert OK : prod {" + New_Prod_Descript + "} at ID [" + this.lastID + "]." ) ;
             szDadesInsertResult = '+++ Afegir ' + New_Prod_Descript + ' OK' ; 
         };
                    
-        console.log( ">>> Llista de la compra : Dades insertades " + New_Prod_Descript ) ;
-        console.log( ">>> Llista de la compra : Dades al client " + szDadesInsertResult ) ;
+//        console.log( ">>> Llista de la compra : Dades insertades " + New_Prod_Descript ) ;
+//        console.log( ">>> Llista de la compra : Dades al client " + szDadesInsertResult ) ;
 
-        res.end( szDadesInsertResult ) ; // send to client
+        res.end( szDadesInsertResult ) ; // send answer to client
 
         mydb.close();
                     
-    });// insert
+    }); // sqlite3 insert
 
-}); // branca "/deleteProducte"
+}); // post "/deleteProducte"
 
 
 
@@ -185,7 +182,7 @@ app.post( "/deleteProducte", function (req, res) {
 
     var szDadesDeleteResult  = 'OK' ;
 
-    console.log( '>>> Delete bdy posted ' + JSON.stringify( req.body ) ) ; // dump request body
+    console.log( '>>> Delete body posted ' + JSON.stringify( req.body ) ) ; // dump request body
 
     var Del_producte_Id    = req.body.del_producte_Id ;
     var Del_producte_Descr = req.body.del_producte_Descr ;
@@ -205,16 +202,16 @@ app.post( "/deleteProducte", function (req, res) {
             szDadesDeleteResult = '+++ Esborrar ' + Del_producte_Descr + ' OK' ; 
         };
                    
-        console.log( ">>> Llista de la compra : Dades esborrades " + Del_producte_Descr ) ;
-        console.log( ">>> Llista de la compra : Dades al client " + szDadesDeleteResult ) ;
+//        console.log( ">>> Llista de la compra : Dades esborrades " + Del_producte_Descr ) ;
+//        console.log( ">>> Llista de la compra : Dades al client " + szDadesDeleteResult ) ;
 
         res.end( szDadesDeleteResult ) ; // send to client
 
         mydb.close();
                     
-    });// delete
+    });// sqlite3 delete
 
-}); // branca "/deleteProducte"
+}); // post "/deleteProducte"
 
 
 // app.get( "/", function (req, res) {
@@ -226,8 +223,17 @@ app.post( "/deleteProducte", function (req, res) {
 // creacio del servidor
 // ====================
 
-var server = app.listen( app.get( 'mPort' ), '127.0.0.1', function () {
-//      var server = app.listen( app.get( 'mPort' ), '192.168.1.123', function () {
+var ip_del_Server ;
+
+    if ( app.get( 'appHostname' ) == 'odin' )
+    {
+        ip_del_Server = '192.168.1.123'    // Raspberry a Torrelles
+    } else {
+        ip_del_Server = '127.0.0.1'
+    } ;
+
+
+var server = app.listen( app.get( 'mPort' ), ip_del_Server, function () {
 
      var host = server.address().address ;
      var port = server.address().port ;

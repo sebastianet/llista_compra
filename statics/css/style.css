@@ -88,7 +88,7 @@
         }
         
         .contingut {
-            background: #9ce317;
+            background: #cecdca;
             font-family: Verdana, Arial, sans-serif ;
             flex: 3 1 0px;
             padding: 1rem;
@@ -248,42 +248,6 @@
         }  /* Fin de Medias Quieres*/   
 
 
-/* CSS Afegir: pantalla per entrar el producte a comprar */
-
-.button_afegir { /* clase general */
-  float:left;
-  border: 1px solid #dedede;
-  border-radius: 3px;
-  color: #555;
-  display: inline-block;
-  font: bold 12px/12px HelveticaNeue, Arial;
-  padding: 8px 11px; 
-  text-decoration: none;
-}
-
-.button_afegir_white{
-  background: #f5f5f5;
-  border-color: #dedede #d8d8d8 #d3d3d3;
-  box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
-  color: #555;
-  text-shadow: 0 1px 0 #fff;
-  background: linear-gradient(white, orange); 
-}
-
-.button_afegir_white:hover{
-    background: #f4f4f4;
-    border-color: #c7c7c7 #c3c3c3 #bebebe;
-    box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
-    text-shadow: 0 1px 0 #fdfdfd;
-    background: red;
-    background: linear-gradient(red, orange); 
-}
-
-
-input[name="producte"] {
-  display: inline-block;
-  width: 75%;
-}
 
 
 /* CSS per la sub-part SPA */
@@ -294,7 +258,6 @@ input[name="producte"] {
     display: flex;
     background: #E0E0E0 ;
     font-family: Verdana, Arial, sans-serif ;
-    color: blue ;
     padding: 5px ;
 }
 
@@ -307,6 +270,61 @@ input[name="producte"] {
 #my_status {
     background: red ;
 }
+
+/* CSS Afegir: pantalla per entrar el producte a comprar */
+
+#SPA_data ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+}
+
+
+#button_afegir { /* clase general */
+  float:left;
+  border: 1px solid #dedede;
+  border-radius: 3px;
+  color: #555;
+  display: inline-block;
+/*   font: bold 12px/12px HelveticaNeue, Arial; */
+  font-size: inherit;
+  padding: 8px 11px; 
+  text-decoration: none;
+}
+
+.button_afegir_white{
+  background: #f5f5f5;
+  border-color: #dedede #d8d8d8 #d3d3d3;
+  box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+  color: #060606;
+  text-shadow: 0 1px 0 #fff;
+  background: linear-gradient(white, #9E9E9E); 
+  display: inline-block;
+  width: 9.5em;
+  text-align: center;
+}
+
+.button_afegir_white:hover{
+/*     background: #f4f4f4; */
+    border-color: #c7c7c7 #c3c3c3 #bebebe;
+    box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+    text-shadow: 0 1px 0 #fdfdfd;
+    background: red;
+    background: linear-gradient(white, #6d6a6c); 
+}
+
+
+input[name="producte"] {
+  display: inline-block;
+  width: 75%;
+}
+
+input[name="producte"]:focus {
+    outline: none !important;  /* perque no tregui valor per defecte del user agent */
+    border:3px solid #b0b0b0;
+	box-shadow: 2px 6px 3px #888888;
+}
+
 
 </style>
 

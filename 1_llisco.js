@@ -115,7 +115,7 @@ var szEnric  = ' ' ;
 }); // get /enric
 
 
-app.get( "/mostrar", function (req, res) { // read the data from SQLITE database and send it to client as JSON
+app.get( "/mostrar", function (req, res, next) { // read the data from SQLITE database and send it to client as JSON
 
      console.log( ">>> /mostrar : fer sqlite3 SELECT" ) ;
 

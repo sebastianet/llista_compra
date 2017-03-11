@@ -6,6 +6,7 @@
 <br />
 
 <a id="button_afegir" class="button_afegir_white" href="#"> Afegir producte </a>
+&nbsp;
 
 <script>
 
@@ -15,17 +16,16 @@ $( "#button_afegir" ).click( function() {
         new_prod_descr : $( '#nou_producte' ).val() 
     } ; // my_new_producte
     
-    // Verifiquem que el valor del input no sigui null, tingui mes dun caracter, que els caracters no siguin tots blanck
+    // Verifiquem que el valor del input no sigui null, tingui mes dun caracter, i que els caracters no siguin tots blanck
     
-    if( my_new_producte.new_prod_descr == null || 
-        my_new_producte.new_prod_descr.length == 0  || 
+    if ( my_new_producte.new_prod_descr == null || 
+         my_new_producte.new_prod_descr.length == 0  || 
          /^\s+$/.test(my_new_producte.new_prod_descr))
-          {
-	                 
-       return false;
-     }
+    {
+        return false;
+    }
      
-	 console.log( "### Han fet click al boto afegir - dades {" + my_new_producte.new_prod_descr + "}." ) ;
+    console.log( "### Han fet click al boto afegir - dades {" + my_new_producte.new_prod_descr + "}." ) ;
   
     console.log( '*** 1.- Demanem al server que inserti el producte a la BBDD.' ) ; 
 
@@ -35,17 +35,12 @@ $( "#button_afegir" ).click( function() {
         
         Posar_Linia_Status( page ) ;
                  
-        //Blaquegem el producte insertat
-        $("#nou_producte").val('');
-      
-       
+        // Blanquegem el producte insertat
+        $( "#nou_producte" ).val('') ;
+ 
     }) ; // post /insertProducte
-    
-     
+ 
 }) ;// click afegir producte
 
         
-       
-
-
 </script>

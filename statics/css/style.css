@@ -251,7 +251,7 @@
 
 
 /* CSS per la sub-part SPA */
-#SPA_data {
+#SPA_data.afegir {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -260,6 +260,19 @@
     font-family: Verdana, Arial, sans-serif ;
     padding: 5px ;
 }
+
+#SPA_data.mostrar {
+/* 	background-color: aqua; */
+	font-family:Verdana, Arial, sans-serif;
+	flex-wrap: wrap;
+	flex-direction:column; 
+	display:flex;
+	justify-content: center;
+
+}
+
+
+
 
 #my_date {
     background: #006600 ;
@@ -273,11 +286,16 @@
 
 /* CSS Afegir: pantalla per entrar el producte a comprar */
 
+
+
+
+/*
 #SPA_data ul{
 			margin: 0;
 			padding: 0;
 			list-style: none;
 }
+*/
 
 
 #button_afegir { /* clase general */
@@ -324,6 +342,53 @@ input[name="producte"]:focus {
     border:3px solid #b0b0b0;
 	box-shadow: 2px 6px 3px #888888;
 }
+
+
+/* CSS Mostrar: pantalla per mostrar els productes */
+
+.buttons_esborrar {
+/*  	background-color: yellow;  */
+ }
+
+
+ul.list_style_type{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	max-height: 20em;
+	overflow: scroll;
+}
+
+
+
+.seleccioproducte{
+  max-width: 100%;
+  margin: 0em 0em 0.1em 0em;
+  background-color: #EEE;
+
+
+  text-transform: uppercase;
+  padding: 0.5em;
+  flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  
+}
+
+span.producte_seleccionat {
+	margin-left: 1em;
+}
+
+.lletra_button {
+	  font-size:1em;
+	  margin-top: 0.5em;
+	  margin-right: 0.5em;
+}
+
+
+
+
 
 
 </style>

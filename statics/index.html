@@ -82,30 +82,17 @@
         $( "#my_status" ).html( szStatus ) ;
     } ;
 
-    
-    $( "#clk_menu_mostrar" ).click( function() {
+     $( "#clk_menu_mostrar" ).click( function() {
 
         console.log( ">>> Menu click_mostrar" ) ;
-        
-        $("#SPA_data").removeClass("afegir");
-        $("#SPA_data").removeClass("mostrar");
-        $("#SPA_data").addClass("mostrar");
-
 
         $.get( '/mostrar', function( json_llista_de_la_compra ) { // o .getJSON
         	        
 //            console.log( "json_llista_de_la_compra {" + json_llista_de_la_compra + "}" ) ;
             console.log( "+++ nombre de elements de la llista de la compra : " + json_llista_de_la_compra.length ) ;	  
  
-            
+            var $contenidor = $( "<ul/>" ) ;
             $( "#SPA_data" ).html( '' ) ;    // erase old contents
-            
-            $("#SPA_data").addClass("mostrar");
-
-            
-            // Inici - Preparem la construccio de la llista dels elements.
-            
-            var $contenidor_1 = $( "<ul/>" ).attr( "class", "list_style_type" ) ;
 
             json_llista_de_la_compra.forEach( function (obj, index) {        
 
@@ -114,25 +101,8 @@
 
                 console.log( ">>> idx " + index, ", id " + my_id + ", txt " + my_txt ) ;
 
-//                  var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
-               var $el_li = $('<li/>');
-               var $el_div = $('<div/>', { 'class' : 'seleccioproducte'});
-               var $el_input = $('<input/>', { 
-	                              'type' : 'checkbox',
-	                              'name' : 'producte_seleccionat',
-	                              'data-id' : my_id,
-	                              'data-prod' : my_txt,
-	                              'value' : my_txt,
-	                             });
-	           var $el_span = $('<span/>', { 
-	                              'class' : 'producte_seleccionat',	                              
-	                              'text' : my_txt,
-	                             });
-	                             
-	            $el_li.append($el_div.append($el_input, $el_span));
-               
+                var $el = $('<li/>').attr( "data-id", my_id).text( my_txt ) ;
 
-/*
                 var elclick = ( function ( id, txt ) {
 
                     return function() {
@@ -149,51 +119,22 @@
 
                 } ) ( my_id, my_txt ) ;
 
-                $el_li.click( elclick ) ;
-*/
+                $el.click( elclick ) ;
 
-                $contenidor_1.append( $el_li ) ;
+                $contenidor.append( $el ) ;
 
             }) ; // for each
-             // Fi - Preparem la construccio de la llista dels elements.
+            
+            
+            $( "#SPA_data" ).append( $contenidor ) ;
 
-            // afegim la llista al #SPA_data
-            $( "#SPA_data" ).append( $contenidor_1) ;
-            
-            // Inici - preparem buttons esborrar.
-            var $contenidor_2 = $('<div/>', { 'class' : 'buttons_esborrar'});
-            var $el_button_esborrar = $('<button/>', { 
-	                              'class' : 'lletra_button',	                              
-	                              'text' : 'Esborrar marcats',
-	                             });
-	        var $el_button_desmarcar = $('<button/>', { 
-	                              'class' : 'lletra_button',	                              
-	                              'text' : 'Desmarcar tots',
-	                             });
-	                             
-	        var $el_icon_esborrar = $('<i/>', { 'class' : 'fa fa-trash lletra_button'});
-	        
-	        var $el_icon_desmarcar = $('<i/>', { 
-		                            'class'       : 'fa fa-clone lletra_button',
-		                            'aria-hidden' : "true",
-	                               });           
-            
-            $contenidor_2.append($el_button_esborrar.append($el_icon_esborrar), 
-                                    $el_button_desmarcar.append($el_icon_desmarcar)
-                                    );  
-                               
-                       
-          // Fi - preparem buttons esborrar.
-                        
-          
-            // afegim el div dels buttons  al #SPA_data
-            $( "#SPA_data" ).append( $contenidor_2) ;
 
         }) ; // get /mostrar
 
     }) ; // click on menu "mostrar" link
 
-    
+
+       
     $( "#clk_menu_afegir" ).click( function() {
         console.log( "### Menu click_afegir" ) ;
         

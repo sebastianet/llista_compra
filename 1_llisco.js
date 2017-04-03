@@ -30,8 +30,7 @@
 //     1.3.f - modificar afegir per blanquejar el camp despres dun insert.
 //     1.3.g - Donar style a la page afegir.
 //     1.3.h - remove ESBORRAR and LLIURE
-//     1.3.i - update pantalla mostrar amb checkbox i botons esborrar, desmarcar
-//      
+//         
 
 
 "use strict";

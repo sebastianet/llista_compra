@@ -41,6 +41,6 @@ oldies
 proves
 webgpio
 
-# database directory - removed to include insert-data.sql in the project 
+# database directory - dont send data to git
 my_bbdd
 

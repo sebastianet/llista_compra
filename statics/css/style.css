@@ -263,7 +263,7 @@
 
 #SPA_data.mostrar {
 /* 	background-color: aqua; */
-	font-family:Verdana, Arial, sans-serif;
+	font-family: Verdana, Arial, sans-serif;
 	flex-wrap: wrap;
 	flex-direction:column; 
 	display:flex;
@@ -272,6 +272,11 @@
 }
 
 
+/* CSS per la pafrt "LLOC_dreta" */
+#LLOC_dreta {
+    color: white ;
+	font-family: Arial, Verdana, sans-serif ;
+}
 
 
 #my_date {

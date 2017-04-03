@@ -4,7 +4,7 @@
 //     Enrique Sarradell   enricsarra@gmail.com      971.721.514
 //     Sebastia Altemir    sebastiasebas@gmail.com   93.639.8522
 
-// per engegar el servidor   :     0_engega_app_llista_compra.sh
+// per engegar el servidor   :     0_engega_app_llista_compra.sh o "node 1_llisco.js"
 // per accedir des un client :     http://192.168.1.123:3535       - des la xarxa de casa meva
 //                                 http://IP-EXTERNA:9035          - des el exterior del meu router
 //    com saber la meva IP externa ?  https://www.whatismyip.com/ - avui (20170227-00:34) es 81.36.193.172
@@ -27,9 +27,11 @@
 //     1.3.c - click on LI funciona
 //     1.3.d - fer servir HOSTNAME per escollir la IP del nostre servidor
 //     1.3.e - modificar afegir per no permetre grabar producte en blanc 
-//     1.3.f - modificar afegir per blanquejar el camp despres dun insert.
-//     1.3.g - Donar style a la page afegir.
+//     1.3.f - modificar afegir per blanquejar el camp despres dun insert
+//     1.3.g - donar style a la page afegir
 //     1.3.h - remove ESBORRAR and LLIURE
+//     1.3.i - delete button erases checked items (in the future)
+//     1.3.j - mostrar llista de productes "habituals"
 //         
 
 
@@ -49,7 +51,7 @@ var sqlite3 = require('sqlite3').verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.3.h' ;                           // version identifier
+     var myVersio        = 'v 1.3.j' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
@@ -234,7 +236,7 @@ var ip_del_Server ;
     {
         ip_del_Server = '192.168.1.123'    // Raspberry a Torrelles
     } else {
-        ip_del_Server = '127.0.0.1'
+        ip_del_Server = '127.0.0.1'        // resta del mon - local
     } ;
 
 

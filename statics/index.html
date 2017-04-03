@@ -48,6 +48,9 @@
         
         <article class="contingut">
 
+<p>
+La teva llista de la compra actual es :
+
             <div id="SPA_data">
                 <p> Aquesta es la part SPA de la pagina</p>
             </div>
@@ -59,7 +62,9 @@
         </aside>
 
         <aside class="lateral-2">
-            &nbsp;
+            <div id="LLOC_dreta">
+                &nbsp;
+            </div>
         </aside>
         
         <footer>  <!-- footer fals. Es del contenedor-flex. -->
@@ -82,7 +87,8 @@
         $( "#my_status" ).html( szStatus ) ;
     } ;
 
-     $( "#clk_menu_mostrar" ).click( function() {
+
+    $( "#clk_menu_mostrar" ).click( function() {
 
         console.log( ">>> Menu click_mostrar" ) ;
 
@@ -127,6 +133,13 @@
             
             
             $( "#SPA_data" ).append( $contenidor ) ;
+
+// mostrem la llista de "productes que habitualment comprem" a la columna de la dreta
+
+            $.get( '/habitual.htm', function( page ) {
+                console.log( '*** Demanem al server HABITUAL.HTM.' ) ;
+                $( "#LLOC_dreta" ).html( page ) ; // show received HTML at specific <div>
+            }) ; // get(habitual.htm)
 
 
         }) ; // get /mostrar

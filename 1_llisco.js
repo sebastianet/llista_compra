@@ -28,8 +28,8 @@
 //     1.3.d - fer servir HOSTNAME per escollir la IP del nostre servidor
 //     1.3.e - modificar afegir per no permetre grabar producte en blanc 
 //     1.3.f - modificar afegir per blanquejar el camp despres dun insert.
-//     1.3.e - Donar style a la page afegir.
-
+//     1.3.g - Donar style a la page afegir.
+//     1.3.h - remove ESBORRAR and LLIURE
 //      
 
 
@@ -49,7 +49,7 @@ var sqlite3 = require('sqlite3').verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.3.d' ;                           // version identifier
+     var myVersio        = 'v 1.3.h' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
@@ -120,7 +120,7 @@ var szEnric  = ' ' ;
 }); // get /enric
 
 
-app.get( "/mostrar", function (req, res) { // read the data from SQLITE database and send it to client as JSON
+app.get( "/mostrar", function (req, res, next) { // read the data from SQLITE database and send it to client as JSON
 
      console.log( ">>> /mostrar : fer sqlite3 SELECT" ) ;
 

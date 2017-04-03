@@ -29,7 +29,7 @@
 //     1.3.e - modificar afegir per no permetre grabar producte en blanc 
 //     1.3.f - modificar afegir per blanquejar el camp despres dun insert
 //     1.3.g - donar style a la page afegir
-//     1.3.h - remove ESBORRAR and LLIURE
+//     1.3.h - remove solapes ESBORRAR and LLIURE
 //     1.3.i - delete button erases checked items (in the future)
 //     1.3.j - mostrar llista de productes "habituals"
 //         
@@ -47,7 +47,7 @@ var app = express() ;
 var path         = require( 'path' ) ;
 var bodyParser   = require( "body-parser" ) ;                    // npm install body-parser
 
-var sqlite3 = require('sqlite3').verbose();
+var sqlite3    = require( 'sqlite3' ).verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
@@ -166,10 +166,10 @@ app.post( "/insertProducte", function (req, res) {
 
         if (err) {
             console.log( "--- Error al insertar " + New_Prod_Descript + '***ERR*** ' + err ) ;
-            szDadesInsertResult = '--- Afegir ' + New_Prod_Descript + 'ERROR' ; 
+            szDadesInsertResult = '--- Afegir {' + New_Prod_Descript + '} ERROR' ; 
         } else { // err is null if insertion was successful
             console.log( "+++ /insert OK : prod {" + New_Prod_Descript + "} at ID [" + this.lastID + "]." ) ;
-            szDadesInsertResult = '+++ Afegir ' + New_Prod_Descript + ' OK' ; 
+            szDadesInsertResult = '+++ Afegir {' + New_Prod_Descript + '} OK' ; 
         };
                    
 //        console.log( ">>> Llista de la compra : Dades insertades " + New_Prod_Descript ) ;
@@ -203,10 +203,10 @@ app.post( "/deleteProducte", function (req, res) {
 
         if (err) {
             console.log( "--- Error al esborrar " + Del_producte_Descr + '***ERR*** ' + err ) ;
-            szDadesDeleteResult = '--- Esborrar ' + Del_producte_Descr + 'ERROR' ; 
+            szDadesDeleteResult = '--- Esborrar {' + Del_producte_Descr + '} ERROR' ; 
         } else { // err is null if insertion was successful
             console.log( "+++ /delete OK : prod {" + Del_producte_Descr + "} at ID [" + Del_producte_Id + "]." ) ;
-            szDadesDeleteResult = '+++ Esborrar ' + Del_producte_Descr + ' OK' ; 
+            szDadesDeleteResult = '+++ Esborrar {' + Del_producte_Descr + '} OK' ; 
         };
                    
 //        console.log( ">>> Llista de la compra : Dades esborrades " + Del_producte_Descr ) ;

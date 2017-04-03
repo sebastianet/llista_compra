@@ -48,11 +48,8 @@
         
         <article class="contingut">
 
-<p>
-La teva llista de la compra actual es :
-
             <div id="SPA_data">
-                <p> Aquesta es la part SPA de la pagina</p>
+                <p> &nbsp; </p>
             </div>
 
         </article>
@@ -68,7 +65,6 @@ La teva llista de la compra actual es :
         </aside>
         
         <footer>  <!-- footer fals. Es del contenedor-flex. -->
-            <p>Resultat de la darrera operacio</p>
             <div id="my_status">
                 &nbsp;
             </div>
@@ -131,16 +127,14 @@ La teva llista de la compra actual es :
 
             }) ; // for each
             
-            
             $( "#SPA_data" ).append( $contenidor ) ;
 
 // mostrem la llista de "productes que habitualment comprem" a la columna de la dreta
 
-            $.get( '/habitual.htm', function( page ) {
+            $.get( 'habitual.htm', function( page ) {
                 console.log( '*** Demanem al server HABITUAL.HTM.' ) ;
                 $( "#LLOC_dreta" ).html( page ) ; // show received HTML at specific <div>
-            }) ; // get(habitual.htm)
-
+            }) ; // get habitual.htm
 
         }) ; // get /mostrar
 
@@ -154,23 +148,24 @@ La teva llista de la compra actual es :
         $("#SPA_data").removeClass("afegir");
         $("#SPA_data").removeClass("mostrar");
      
-        
         $.get( 'afegir.htm', function( page ) {
             console.log( '*** Demanem al server el fitxer AFEGIR.HTM' ) ;       
             $( "#SPA_data" ).html( page ) ;
-            Posar_Linia_Status( "Afegir OK" )
+            Posar_Linia_Status( "+++ Afegir OK" )
         }) ; // get afegir.htm
     }) ; // click on menu "afegir" link
 
 
     $( "#clk_menu_ajuda" ).click( function() {
         console.log( "### Menu click_ajuda" ) ;
+
         $("#SPA_data").removeClass("afegir");
         $("#SPA_data").removeClass("mostrar");
+
         $.get( 'ajuda.htm', function( page ) {
             console.log( '*** Demanem al server el fitxer AJUDA.HTM i el mostrem a SPA text.' ) ;
             $( "#SPA_data" ).html( page ) ;
-            Posar_Linia_Status( "Ajuda OK" ) ;
+            Posar_Linia_Status( "+++ Ajuda OK" ) ;
         }) ; // get ajuda.htm
     }) ; // click on menu "ajuda" link
 
@@ -182,7 +177,7 @@ La teva llista de la compra actual es :
         $.get( '/enric', function( page ) {
             console.log( '*** Demanem al server /enric.' ) ;
             $( "#SPA_data" ).html( page ) ;
-            Posar_Linia_Status( "Lliure OK" ) ;
+            Posar_Linia_Status( "+++ Lliure OK" ) ;
         }) ; // get /enric
     }) ; // click on menu "lliure" link
 

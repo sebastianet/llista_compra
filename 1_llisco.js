@@ -32,6 +32,7 @@
 //     1.3.h - remove solapes ESBORRAR and LLIURE
 //     1.3.i - delete button erases checked items (in the future)
 //     1.3.j - mostrar llista de productes "habituals"
+//     1.3.k - la pantalla AFEGIR te autofocus en el camp de "input"
 //         
 
 
@@ -51,7 +52,7 @@ var sqlite3    = require( 'sqlite3' ).verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.3.j' ;                           // version identifier
+     var myVersio        = 'v 1.3.k' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      

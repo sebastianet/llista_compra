@@ -1,7 +1,7 @@
 
 <label> Entra el producte a comprar </label>  <br />
 
-<input id="nou_producte" type="text" name="producte" placeholder="no gastis molt" maxlength="100" "/>
+<input id="nou_producte" type="text" name="producte" autofocus placeholder="no gastis molt" maxlength="100" "/>
 
 <br />
 
@@ -16,7 +16,7 @@ $( "#button_afegir" ).click( function() {
         new_prod_descr : $( '#nou_producte' ).val() 
     } ; // my_new_producte
     
-    // Verifiquem que el valor del input no sigui null, tingui mes dun caracter, i que els caracters no siguin tots blanck
+    // Verifiquem que el valor del input no sigui null, tingui mes de un caracter, i que els caracters no siguin tots blancs
     
     if ( my_new_producte.new_prod_descr == null || 
          my_new_producte.new_prod_descr.length == 0  || 

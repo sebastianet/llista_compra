@@ -34,50 +34,50 @@
     }
 
 
-		.logo{
-			display: block;
-			float: left;
-			max-width: 12.5em; // 200px / 16px 
-		}
+	.logo {
+		display: block;
+		float: left;
+		max-width: 12.5em; // 200px / 16px 
+	}
 
-		.logo img{
-			max-width: 100%;
-		}
+	.logo img {
+		max-width: 100%;
+	}
 
-		nav{
-			float: right;
-			margin-top: 0.3125em;
-		}
+	nav {
+		float: right;
+		margin-top: 0.3125em;
+	}
 
-		#menumovil{
-			display: none;
-		}
+	#menumovil {
+		display: none;
+	}
 
-		nav ul{
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}
+	nav ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
 
-		nav ul li{
-			float: left;
-		}
+	nav ul li {
+		float: left;
+	}
 
-		nav ul li a{
-			display: block;
-			color: #0f0f0f;
-			text-decoration: none;
-			font-size: 1.125em; /* 18 / 16px*/
-			text-align: center;
-			padding:0.875em 1.125em; /* 14px / 16px - 18 / 16px*/
-		}
+	nav ul li a {
+		display: block;
+		color: #0f0f0f;
+		text-decoration: none;
+		font-size: 1.125em; /* 18 / 16px*/
+		text-align: center;
+		padding:0.875em 1.125em; /* 14px / 16px - 18 / 16px*/
+	}
 
-		nav ul li a:hover{
-			background: #3d3c3e;
-			color: white;
-			border-radius: 0.375em;
+	nav ul li a:hover {
+		background: #3d3c3e;
+		color: white;
+		border-radius: 0.375em;
 
-		}
+	}
 		
 	.contenedor-flex {
 /*
@@ -107,10 +107,10 @@
         }
         
         .lateral-2 {
-            background: #f50fae;
-            flex: 1 1 0px;
-            padding: 1rem;
-            order: 3;
+            background: #f50fae ;
+            flex: 2 1 0px ;
+            padding: 1rem ;
+            order: 3 ;
         }
 
         footer {

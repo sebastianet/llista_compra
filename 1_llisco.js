@@ -5,9 +5,10 @@
 //     Sebastia Altemir    sebastiasebas@gmail.com   93.639.8522
 
 // per engegar el servidor   :     0_engega_app_llista_compra.sh o "node 1_llisco.js"
-// per accedir des un client :     http://192.168.1.123:3535       - des la xarxa de casa meva
-//                                 http://IP-EXTERNA:9035          - des el exterior del meu router
-//    com saber la meva IP externa ?  https://www.whatismyip.com/ - avui (20170227-00:34) es 81.36.193.172
+// per accedir des un client :     http://192.168.1.123:3535             - des la xarxa de casa meva
+//                                 http://IP-EXTERNA:9035                - des el exterior del meu router
+//    com saber la meva IP externa ?  https://www.whatismyip.com/        - avui (20170227-00:34) es 81.36.193.172
+//    Amb NO-IP :                     http://myraspiodin.hopto.org:9035/
 
 // Versions ( displayed via 'myVersio')
 //     1.1.a - inici del codi amb express
@@ -33,6 +34,7 @@
 //     1.3.i - delete button erases checked items (in the future)
 //     1.3.j - mostrar llista de productes "habituals"
 //     1.3.k - la pantalla AFEGIR te autofocus en el camp de "input"
+//     1.3.l - no-iP
 //         
 
 
@@ -52,7 +54,7 @@ var sqlite3    = require( 'sqlite3' ).verbose();
 var dbfilename = "./my_bbdd/llista_de_la_compra.db";
 
 // les meves variables
-     var myVersio        = 'v 1.3.k' ;                           // version identifier
+     var myVersio        = 'v 1.3.l' ;                           // version identifier
      var dbfilename      = "./my_bbdd/llista_de_la_compra.db";   // nom del fitxer amb la BBDD
      var szOut ;
      
